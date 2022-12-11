@@ -11,7 +11,7 @@ public class CartTest {
 
     @BeforeEach
     public void beforeEach() {
-        System.out.println("Test execution is in progress...");
+        System.out.println("CarTest execution is in progress...");
     }
 
     @DisplayName("Real Item Price Check")
@@ -40,6 +40,6 @@ public class CartTest {
 
     @AfterEach
     public void afterEach() {
-        System.out.println("The test has been completed");
+        System.out.println("The CarTest has been completed");
     }
 }

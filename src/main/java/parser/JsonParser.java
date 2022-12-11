@@ -30,7 +30,6 @@ public class JsonParser implements Parser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }
