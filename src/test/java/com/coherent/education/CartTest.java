@@ -38,6 +38,8 @@ public class CartTest {
 
     }
 
+    //TODO add test where price is incorrect
+
     @AfterEach
     public void afterEach() {
         System.out.println("The CarTest has been completed");

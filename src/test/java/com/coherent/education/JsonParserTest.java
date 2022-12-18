@@ -1,8 +1,9 @@
 package com.coherent.education;
 
 import com.google.gson.Gson;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import parser.JsonParser;
 import parser.NoSuchFileException;
 import parser.Parser;
@@ -11,33 +12,13 @@ import shop.RealItem;
 
 import java.io.*;
 
-public class JsonParserTest implements Parser{
+public class
+JsonParserTest {
 
     Cart allaCart = new Cart("alla-cart");
+    Cart allaCart2 = new Cart("alla-cart-2");
 
-    Gson gson;
-
-    public JsonParserTest(Gson gson) {
-        this.gson = gson;
-    }
-    @Override
-    public Cart readFromFile(File file){
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            return gson.fromJson(reader.readLine(), Cart.class);
-        } catch (FileNotFoundException ex) {
-            throw new NoSuchFileException(String.format("File %s.json not found!", file), ex);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public void writeToFile(Cart cart) {
-
-    }
-
-
+    @DisplayName("Check writeFromFile method")
     @Test
     public void checkFileWritesCorrectly() throws IOException {
         //existing logic
@@ -53,19 +34,51 @@ public class JsonParserTest implements Parser{
         allaCart.getTotalPrice();
 
         //my method to compare with existing logic
-        Parser jsonParserTest = new JsonParserTest();
-        Cart comparableCart = jsonParserTest.readFromFile(new File("src/main/resources/alla-cart.json"));
+        Cart comparableCart = MyParser.readFromFile(new File("src/main/resources/alla-cart.json"));
         comparableCart.getTotalPrice();
         comparableCart.showItems();
 
-
-
         Assertions.assertEquals(allaCart.getTotalPrice(), comparableCart.getTotalPrice());
+    }
+    //TODO create one more test for readFromFile. for exception test: parametrized test - assertions with exceptions + grouped assertion
+
+    @BeforeAll
+    public void beforeEach() {
+        System.out.println("Checking another argument");
+    }
+
+    @DisplayName("Check readFromFile method - price")
+    @ParameterizedTest
+    @ValueSource(ints = {10, 12, 33, 0, 99})
+    public void checkReadsFromFileCorrectly(int totalPrice) {
+        RealItem newItem = new RealItem();
+        newItem.setName("Apple");
+        newItem.setWeight(50);
+        newItem.setPrice(10);
+        allaCart2.addRealItem(newItem);
+
+        JsonParser jsonParser = new JsonParser();
+        jsonParser.writeToFile(allaCart2);
+
+        Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
+        allaCart2.getTotalPrice();
+
+        Assertions.assertEquals(allaCart2.getTotalPrice(), totalPrice);
 
     }
 
+    @Disabled("Disabled as has been asked in the task")
+    @DisplayName("Check Group Assertions")
+    @Test
+    void testGroupAssertions() {
+        Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
+        Assertions.assertAll("cartCheck",
+                () -> Assertions.assertEquals(12, allaCart2.getTotalPrice()),
+                        () -> Assertions.assertEquals("Bla-Bla", allaCart2.getCartName())
+                                );
 
 
+    }
 }
 
 
