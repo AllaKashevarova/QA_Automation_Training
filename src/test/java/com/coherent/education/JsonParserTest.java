@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
 import parser.JsonParser;
 import parser.NoSuchFileException;
 import parser.Parser;
@@ -12,12 +13,15 @@ import shop.RealItem;
 
 import java.io.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class
 JsonParserTest {
 
     Cart allaCart = new Cart("alla-cart");
     Cart allaCart2 = new Cart("alla-cart-2");
-
+    Cart allaCart3 = new Cart("alla-cart-3");
+    @Disabled
     @DisplayName("Check writeFromFile method")
     @Test
     public void checkFileWritesCorrectly() throws IOException {
@@ -40,13 +44,13 @@ JsonParserTest {
 
         Assertions.assertEquals(allaCart.getTotalPrice(), comparableCart.getTotalPrice());
     }
-    //TODO create one more test for readFromFile. for exception test: parametrized test - assertions with exceptions + grouped assertion
+    //TODO rewrite BeforeEach/BeforeAfter in next PR
 
-    @BeforeAll
+    @BeforeEach
     public void beforeEach() {
         System.out.println("Checking another argument");
     }
-
+    @Disabled
     @DisplayName("Check readFromFile method - price")
     @ParameterizedTest
     @ValueSource(ints = {10, 12, 33, 0, 99})
@@ -67,6 +71,7 @@ JsonParserTest {
 
     }
 
+
     @Disabled("Disabled as has been asked in the task")
     @DisplayName("Check Group Assertions")
     @Test
@@ -74,11 +79,25 @@ JsonParserTest {
         Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
         Assertions.assertAll("cartCheck",
                 () -> Assertions.assertEquals(12, allaCart2.getTotalPrice()),
-                        () -> Assertions.assertEquals("Bla-Bla", allaCart2.getCartName())
-                                );
-
-
+                () -> Assertions.assertEquals("Bla-Bla", allaCart2.getCartName())
+        );
     }
+
+    // TODO - add AssertThrows for the exceptions
+    @DisplayName("Test Exceptions")
+    @Test
+    void testExpectedExceptionPass(){
+
+        Cart exceptionTest = MyParser.readFromFile(new File("src/main/resources/alla-cart-222.json"));
+        Exception exception = Assertions.assertThrows(NoSuchFileException.class, () -> exceptionTest.getTotalPrice(), "Such file does not exist");
+
+//        String actualMessage = exception.getMessage();
+//        String expectedMessage = "File %s.json not found!";
+//
+//
+//        assertEquals("Message", exception.getMessage());
+    }
+
 }
 
 

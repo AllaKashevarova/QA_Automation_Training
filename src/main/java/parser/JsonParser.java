@@ -20,7 +20,7 @@ public class JsonParser implements Parser {
             e.printStackTrace();
         }
     }
-    // TODO create my own method that will read from writeToFile and compare the object parameters  + google gson
+
 
     public Cart readFromFile(File file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
