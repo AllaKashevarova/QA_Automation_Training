@@ -10,7 +10,7 @@ public class RealItemTest {
 
     @BeforeEach
     public void messageBeforeTest() {
-        System.out.println("Verify getter and setter work as expected");
+        System.out.println("RealItemTest: Verify getter and setter work as expected");
     }
 
     @DisplayName("Weight check")

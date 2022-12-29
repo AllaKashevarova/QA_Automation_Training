@@ -1,30 +1,24 @@
-package parser;
+package com.coherent.education;
 
 import com.google.gson.Gson;
+import parser.NoSuchFileException;
 import shop.Cart;
 
 import java.io.*;
 
-public class JsonParser implements Parser {
+public class MyParser {
 
-    private final Gson gson;
-
-    public JsonParser() {
-        gson = new Gson();
-    }
-
-    public void writeToFile(Cart cart) {
+    public static void writeToFile(Cart cart) {
         try (FileWriter writer = new FileWriter("src/main/resources/" + cart.getCartName() + ".json")) {
-            writer.write(gson.toJson(cart));
+            writer.write(new Gson().toJson(cart));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    public Cart readFromFile(File file) {
+    public static Cart readFromFile(File file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            return gson.fromJson(reader.readLine(), Cart.class);
+            return new Gson().fromJson(reader.readLine(), Cart.class);
         } catch (FileNotFoundException ex) {
             throw new NoSuchFileException(String.format("File %s.json not found!", file), ex);
         } catch (IOException e) {
