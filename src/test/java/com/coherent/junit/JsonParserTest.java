@@ -1,18 +1,14 @@
-package com.coherent.education;
+package com.coherent.junit;
 
-import com.google.gson.Gson;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import parser.JsonParser;
 import parser.NoSuchFileException;
-import parser.Parser;
 import shop.Cart;
 import shop.RealItem;
 
 import java.io.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonParserTest {
 
@@ -30,7 +26,6 @@ public class JsonParserTest {
         newItem.setWeight(100);
         newItem.setPrice(25);
         allaCart.addRealItem(newItem);
-
 
         jsonParser.writeToFile(allaCart);
         allaCart.showItems();
@@ -60,27 +55,24 @@ public class JsonParserTest {
         newItem.setPrice(10);
         allaCart2.addRealItem(newItem);
 
-
         jsonParser.writeToFile(allaCart2);
 
         Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
         allaCart2.getTotalPrice();
 
         Assertions.assertEquals(allaCart2.getTotalPrice(), totalPrice);
-
     }
 
 
-    @Disabled("Disabled as has been asked in the task")
-    @DisplayName("Check Group Assertions")
-    @Test
-    void testGroupAssertions() {
-        Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
-        Assertions.assertAll("cartCheck",
-                () -> Assertions.assertEquals(12, allaCart2.getTotalPrice()),
-                () -> Assertions.assertEquals("Bla-Bla", allaCart2.getCartName())
-        );
-    }
+//    @Disabled("Disabled as has been asked in the task")
+//    @DisplayName("Check Group Assertions")
+//    @Test
+//    void testGroupAssertions() {
+//        Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
+//                () -> Assertions.assertEquals(12, allaCart2.getTotalPrice()),
+//                () -> Assertions.assertEquals("Bla-Bla", allaCart2.getCartName())
+//        );
+//    }
 
 
     @DisplayName("Test Exceptions")
@@ -90,11 +82,6 @@ public class JsonParserTest {
         Exception exception = Assertions.assertThrows(NoSuchFileException.class,
                 () -> jsonParser.readFromFile(new File(pathToFile)), "Such file does not exist");
     }
-
-
-
-
-
 }
 
 
