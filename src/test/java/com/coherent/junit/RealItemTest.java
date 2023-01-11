@@ -1,4 +1,4 @@
-package com.coherent.education;
+package com.coherent.junit;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
