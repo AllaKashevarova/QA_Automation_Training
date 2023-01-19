@@ -1,0 +1,14 @@
+<suite name="Suite5" verbose="1">
+    <test name="ExcludeClass">
+        <packages>
+            <package name="com.coherent.testng"/>
+        </packages>
+        <groups>
+            <run>
+                <exclude name="JsonParserTest.*"/>
+                <include name="Item.*"/>
+                <include name="Cart.Price"/>
+            </run>
+        </groups>
+    </test>
+</suite>

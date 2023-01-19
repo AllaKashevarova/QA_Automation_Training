@@ -1,0 +1,12 @@
+<suite name="Suite3" verbose="1">
+    <test name="ExceptionsTests">
+        <packages>
+            <package name="com.coherent.testng"/>
+        </packages>
+        <groups>
+            <run>
+                <include name="JsonParserTest.exception"/>
+            </run>
+        </groups>
+    </test>
+</suite>

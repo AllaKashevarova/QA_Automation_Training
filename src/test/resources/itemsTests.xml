@@ -1,0 +1,13 @@
+<suite name="Suite2" verbose="1">
+    <test name="ItemsTests">
+        <packages>
+            <package name="com.coherent.testng"/>
+        </packages>
+        <groups>
+            <run>
+                <include name="Item.*"/>
+                <exclude name="Item.Virtual"/>
+            </run>
+        </groups>
+    </test>
+</suite>
