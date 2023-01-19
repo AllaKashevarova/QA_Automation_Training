@@ -64,15 +64,16 @@ public class JsonParserTest {
     }
 
 
-//    @Disabled("Disabled as has been asked in the task")
-//    @DisplayName("Check Group Assertions")
-//    @Test
-//    void testGroupAssertions() {
-//        Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
-//                () -> Assertions.assertEquals(12, allaCart2.getTotalPrice()),
-//                () -> Assertions.assertEquals("Bla-Bla", allaCart2.getCartName())
-//        );
-//    }
+    @Disabled("Disabled as has been asked in the task")
+    @DisplayName("Check Group Assertions")
+    @Test
+    void testGroupAssertions() {
+        Cart allaCart2 = MyParser.readFromFile(new File("src/main/resources/alla-cart-2.json"));
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(12, allaCart2.getTotalPrice()),
+                () -> Assertions.assertEquals("Bla-Bla", allaCart2.getCartName())
+        );
+    }
 
 
     @DisplayName("Test Exceptions")
