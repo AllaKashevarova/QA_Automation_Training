@@ -17,10 +17,9 @@ public class CartTNG {
     final double TAX = 0.2;
     Cart cart = new Cart("UserCart");
     RealItem realItem1;
-    RealItem realItem2;
     VirtualItem virtualItem;
     String cartName = "UserCart";
-    double result = realItem1.getPrice() + realItem1.getPrice() * TAX;
+
 
     @BeforeMethod
     public void createCard() {
@@ -33,9 +32,9 @@ public class CartTNG {
 
     @Test(groups = {"Cart.Price"})
     public void checkPriceOfRealItem() {
+        double result = realItem1.getPrice() + realItem1.getPrice() * TAX;
         Assert.assertEquals(cart.getTotalPrice(), result);
     }
-
 
 //    @Test
 //    public void checkItemsAddedToCart() {
@@ -55,6 +54,7 @@ public class CartTNG {
 
     @Test (groups = {"Cart.GroupedAssertions"})
     public void groupAssertionsTest(){
+        double result = 72;
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(cart.getCartName(), cartName);
@@ -66,7 +66,6 @@ public class CartTNG {
     @AfterMethod
     public void deleteItemsFromCart() {
         cart.deleteRealItem(realItem1);
-        //cart.deleteRealItem(realItem2);
 
     }
 
