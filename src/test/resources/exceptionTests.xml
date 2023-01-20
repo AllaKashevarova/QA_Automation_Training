@@ -5,7 +5,7 @@
         </packages>
         <groups>
             <run>
-                <include name="JsonParserTest.exception"/>
+                <include name=".*Exception"/>
             </run>
         </groups>
     </test>

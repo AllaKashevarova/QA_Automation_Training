@@ -15,7 +15,7 @@ public class RealItemTNG {
     }
 
 
-    @Test (groups = {"Item.Real"})
+    @Test (groups = {"Regression.RealItem"})
     public void checkWeight() {
         RealItem realItem = new RealItem();
         realItem.setWeight(100);

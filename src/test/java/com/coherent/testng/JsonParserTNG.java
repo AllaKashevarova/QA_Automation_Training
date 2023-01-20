@@ -16,8 +16,10 @@ import java.nio.file.Path;
 
 public class JsonParserTNG {
 
-    Cart allaCart = new Cart("alla-cart-testNG");
+    String cartName = "alla-cart-testNG";
+    Cart allaCart = new Cart(cartName);
     JsonParser jsonParser = new JsonParser();
+    String pathName = "src/main/resources/alla-cart-testNG.json";
 
     @BeforeMethod
     public void createCart() {
@@ -29,35 +31,24 @@ public class JsonParserTNG {
         jsonParser.writeToFile(allaCart);
     }
 
-
     //TODO Question!
 
     @Ignore
-    @Test(groups = {"JsonParserTest.regular"})
+    @Test(groups = {"Smoke.Parser"})
     public void checkReadsFromFileCorrectly() {
         int totalPrice = 30;
         //This test fails. Looks like @AfterMethod is not working properly? TBD
-        Cart allaCart = MyParser.readFromFile(new File("src/main/resources/alla-cart-testNG.json"));
+        Cart allaCart = MyParser.readFromFile(new File(pathName));
         allaCart.getTotalPrice();
         Assertions.assertEquals(allaCart.getTotalPrice(), totalPrice);
     }
 
-
-    @Test(groups = {"JsonParserTest.regular"})
-    public void checkFileDeleted() {
-        File fileToDelete = new File("src/main/resources/alla-cart-testNG.json");
-        fileToDelete.delete();
-
-        Assertions.assertEquals(fileToDelete.delete(), false);
-    }
-
-    @Test (groups = {"JsonParserTest.regular"})
+    @Test(groups = {"Regression.Parser"})
     public void checkFileName() {
-        String filename = "alla-cart-testNG";
-        Cart allaCart = MyParser.readFromFile(new File("src/main/resources/alla-cart-testNG.json"));
-        allaCart.getCartName();
 
-        Assertions.assertEquals(allaCart.getCartName(), filename);
+        Cart allaCart = MyParser.readFromFile(new File(pathName));
+        allaCart.getCartName();
+        Assertions.assertEquals(allaCart.getCartName(), cartName);
     }
 
 
@@ -72,7 +63,7 @@ public class JsonParserTNG {
         };
     }
 
-    @Test(expectedExceptions = {NoSuchFileException.class}, groups = {"JsonParserTest.exception"}, dataProvider = "test1")
+    @Test(expectedExceptions = {NoSuchFileException.class}, groups = {"Regression.Parser.Exception"}, dataProvider = "test1")
     public void exceptionTest(String pathToFile) {
         System.out.println("Invoked test string: " + pathToFile);
         jsonParser.readFromFile(new File(pathToFile));
@@ -80,12 +71,11 @@ public class JsonParserTNG {
 
     @AfterMethod
     public void deleteCart() {
-        File fileToDelete = new File("src/main/resources/alla-cart-testNG.json");
+        File fileToDelete = new File(pathName);
         if (fileToDelete.delete()) {
             System.out.println(fileToDelete.getName() + ".json file has been deleted");
         } else {
             System.out.println("Failed to delete the file.");
         }
     }
-
 }

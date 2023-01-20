@@ -13,7 +13,7 @@ public class VirtualItemTNG {
         System.out.println("VirtualItem test has been invoked");
     }
 
-    @Test (groups = {"Item.Virtual"})
+    @Test (groups = {"Regression.VirtualItem"})
     public void checkSizeOnDisk() {
         VirtualItem virtualItem = new VirtualItem();
         virtualItem.setSizeOnDisk(120);

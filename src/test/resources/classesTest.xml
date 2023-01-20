@@ -4,7 +4,7 @@
             <class name="com.coherent.testng.JsonParserTNG"/>
             <methods>
                 <include name="checkFileName"/>
-                <include name="exceptionTest"/>
+                <include name="checkReadsFromFileCorrectly"/>
             </methods>
         </classes>
     </test>

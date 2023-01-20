@@ -30,29 +30,20 @@ public class CartTNG {
         cart.addRealItem(realItem1);
     }
 
-    @Test(groups = {"Cart.Price"})
+    @Test(groups = {"Smoke.Cart"})
     public void checkPriceOfRealItem() {
         double result = realItem1.getPrice() + realItem1.getPrice() * TAX;
         Assert.assertEquals(cart.getTotalPrice(), result);
     }
 
-//    @Test
-//    public void checkItemsAddedToCart() {
-//
-//    //check that appropriate number of items have been added
-//
-//
-//        Assertions.assertEquals(cart.showItems(), ??);
-//
-//    }
 
-    @Test (groups = {"Cart.Name"})
+    @Test (groups = {"Regression.Cart"})
     public void checkCartName(){
 
         Assert.assertEquals(cart.getCartName(), cartName);
     }
 
-    @Test (groups = {"Cart.GroupedAssertions"})
+    @Test (groups = {"Regression.Cart"})
     public void groupAssertionsTest(){
         double result = 72;
 

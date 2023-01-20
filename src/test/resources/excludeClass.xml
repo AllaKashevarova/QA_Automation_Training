@@ -5,9 +5,9 @@
         </packages>
         <groups>
             <run>
-                <exclude name="JsonParserTest.*"/>
-                <include name="Item.*"/>
-                <include name="Cart.Price"/>
+                <exclude name="Regression.Parser*"/>
+                <include name="Regression.*"/>
+                <exclude name="Regression.Cart"/>
             </run>
         </groups>
     </test>
