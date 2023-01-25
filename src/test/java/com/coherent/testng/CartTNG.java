@@ -15,7 +15,7 @@ import shop.VirtualItem;
 public class CartTNG {
 
     final double TAX = 0.2;
-    Cart cart = new Cart("UserCart");
+    Cart cart;
     RealItem realItem1;
     VirtualItem virtualItem;
     String cartName = "UserCart";
@@ -23,6 +23,7 @@ public class CartTNG {
 
     @BeforeMethod
     public void createCard() {
+        cart = new Cart("UserCart");
         realItem1 = new RealItem();
         realItem1.setPrice(20);
         realItem1.setWeight(40);
@@ -45,7 +46,7 @@ public class CartTNG {
 
     @Test (groups = {"Regression.Cart"})
     public void groupAssertionsTest(){
-        double result = 72;
+        double result = 24;
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(cart.getCartName(), cartName);

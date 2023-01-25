@@ -38,7 +38,7 @@ public class JsonParserTest {
 
         Assertions.assertEquals(allaCart.getTotalPrice(), comparableCart.getTotalPrice());
     }
-    //TODO rewrite BeforeEach/BeforeAfter in next PR
+
 
     @BeforeEach
     public void beforeEach() {

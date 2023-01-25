@@ -12,5 +12,4 @@
     </test>
 </suite>
 
-<!--Question:-->
-<!--Here JsonParserTNG test fails. However it doesn't fail from JsonParserTNG class. I'm wondering why-->
+
