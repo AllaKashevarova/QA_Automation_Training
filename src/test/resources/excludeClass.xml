@@ -1,0 +1,14 @@
+<suite name="Suite5" verbose="1">
+    <test name="ExcludeClass">
+        <packages>
+            <package name="com.coherent.testng"/>
+        </packages>
+        <groups>
+            <run>
+                <exclude name="Regression.Parser*"/>
+                <include name="Regression.*"/>
+                <exclude name="Regression.Cart"/>
+            </run>
+        </groups>
+    </test>
+</suite>

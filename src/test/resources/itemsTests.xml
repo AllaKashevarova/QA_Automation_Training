@@ -1,0 +1,15 @@
+<suite name="Suite2" verbose="1">
+    <test name="ItemsTests">
+        <packages>
+            <package name="com.coherent.testng"/>
+        </packages>
+        <groups>
+            <run>
+                <include name="Regression.Cart"/>
+                <exclude name="Regression.VirtualItem"/>
+            </run>
+        </groups>
+    </test>
+</suite>
+
+

@@ -1,4 +1,4 @@
-package com.coherent.education;
+package com.coherent.junit;
 
 import com.google.gson.Gson;
 import parser.NoSuchFileException;

@@ -1,0 +1,16 @@
+<suite name="Suite1" verbose="1" >
+    <test name="Regression1"   >
+        <classes>
+            <class name="com.coherent.testng.JsonParserTNG">
+                <groups>
+                    <run>
+                        <include name="Regression*"/>
+                        <include name="RealItemTest"/>
+                    </run>
+                </groups>
+            </class>
+        </classes>
+    </test>
+</suite>
+
+

@@ -1,0 +1,12 @@
+<suite name="Suite3" verbose="1">
+    <test name="ExceptionsTests">
+        <packages>
+            <package name="com.coherent.testng"/>
+        </packages>
+        <groups>
+            <run>
+                <include name=".*Exception"/>
+            </run>
+        </groups>
+    </test>
+</suite>

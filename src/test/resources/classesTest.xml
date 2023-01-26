@@ -1,0 +1,11 @@
+<suite name="Suite4" verbose="1">
+    <test name="Run specific Class">
+        <classes>
+            <class name="com.coherent.testng.JsonParserTNG"/>
+            <methods>
+                <include name="checkFileName"/>
+                <include name="checkReadsFromFileCorrectly"/>
+            </methods>
+        </classes>
+    </test>
+</suite>
