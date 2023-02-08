@@ -11,55 +11,40 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
 
 public class YandexLogIn {
 
     private WebDriver driver;
     Locators locator = new Locators();
-    String expectedUserName = "fine.lname";
+    private String expectedUserName = "fine.lname";
+    private String resource = "https://mail.yandex.com";
+    private String username = "fine.lname";
+    private String password = "p8Usc@jheBHhUZ3";
 
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     }
 
     @Test
     void logInYandexMailbox() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
 
         driver.manage().window().setSize(new Dimension(1700, 1000));
-        driver.get("https://mail.yandex.com");
-
+        driver.get(resource);
         driver.findElement(locator.logInButtonMain).click();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
-
-        driver.findElement(locator.userName).sendKeys("fine.lname");
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
-
+        wait.until(ExpectedConditions.elementToBeClickable(locator.userName));
+        driver.findElement(locator.userName).sendKeys(username);
         driver.findElement(locator.logInButton).click();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
-
-        driver.findElement(locator.passwordField).sendKeys("p8Usc@jheBHhUZ3");
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
-
+        driver.findElement(locator.passwordField).sendKeys(password);
         driver.findElement(locator.logInButton2).click();
-
         driver.findElement(locator.UserImage).click();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
 
         WebElement spanElement = wait.until(ExpectedConditions.visibilityOfElementLocated(locator.userNickName));
         String text = spanElement.getText();
-
         //This assertion also works well with this code:
         //Assertions.assertTrue(driver.findElement(locator.userNickName).isDisplayed());
         Assertions.assertEquals(expectedUserName, text);
