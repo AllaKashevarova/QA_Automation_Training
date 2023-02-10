@@ -12,7 +12,7 @@ public class Locators {
     By passwordField = By.id("passp-field-passwd");
     By logInButton2 = By.id("passp:sign-in");
     By UserImage = By.xpath("//img[@class='user-pic__image']");
-    By userNickName = By.cssSelector("#js-apps-container .user-account__name");
+    By userNickName = By.xpath("//a[@role='button']/span[@class='user-account__name']");
     //below ones are not used in code but have been created in testing purpose:
     By linkText = By.linkText("Light version");
     By variable = By.partialLinkText("Yandex");
