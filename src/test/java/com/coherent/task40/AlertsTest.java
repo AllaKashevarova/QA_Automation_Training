@@ -7,22 +7,19 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
+import static com.coherent.task40.TestConstants.*;
 
 public class AlertsTest {
-    WebDriver driver;
-    String source = "https://demo.seleniumeasy.com/javascript-alert-box-demo.html";
+    WebDriver driver = new ChromeDriver();
     By confirmBoxButton = By.xpath("//button[@onclick='myConfirmFunction()']");
     By alertBoxButton = By.xpath("//button[@onclick='myAlertFunction()']");
     String confirmBoxText = "Press a button!";
     String alertBoxText = "I am an alert box!";
 
+
     @BeforeEach
-    void setup() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.manage().window().setSize(new Dimension(1700, 1000));
-        driver.get(source);
+    void setUp() {
+        BaseTest.setup(driver, ALERTS_PAGE);
     }
 
     @Test
@@ -46,7 +43,7 @@ public class AlertsTest {
     }
 
     @Test
-    public void JavaScriptAlertBoxTest(){
+    public void JavaScriptAlertBoxTest() {
         driver.findElement(alertBoxButton).click();
         Alert alert = driver.switchTo().alert();
         String textOnAlert = alert.getText();

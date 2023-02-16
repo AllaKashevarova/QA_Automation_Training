@@ -3,13 +3,13 @@ package com.coherent.task40;
 import org.openqa.selenium.By;
 
 public class Customer {
-    public String name;
-    public String position;
-    public String office;
-    public String age;
-    public String salary;
+    private String name;
+    private String position;
+    private String office;
+    private int age;
+    private int salary;
 
-    public Customer(String name, String position, String office, String age, String salary) {
+    public Customer(String name, String position, String office, int age, int salary) {
         this.name = name;
         this.position = position;
         this.office = office;
@@ -41,19 +41,19 @@ public class Customer {
         this.office = office;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
