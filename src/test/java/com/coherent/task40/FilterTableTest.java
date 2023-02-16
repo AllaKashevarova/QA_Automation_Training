@@ -41,8 +41,9 @@ public class FilterTableTest {
             if (customer.getAge() > 30 && customer.getSalary() > 200000) {
                 sortedCustomers.add(customer);
             }
-            sortedCustomers.forEach(System.out::println);
+
         }
+        sortedCustomers.forEach(System.out::println);
         int actualListSize = sortedCustomers.size();
         Assertions.assertEquals(expectedListSize, actualListSize);
     }
