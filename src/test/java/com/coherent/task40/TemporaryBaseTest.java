@@ -8,15 +8,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest {
+import static com.coherent.task40.TestConstants.*;
+
+public class TemporaryBaseTest {
     WebDriver driver = new ChromeDriver();
-    //String source;
+
 
     @BeforeEach
     public void setup() {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1700, 1000));
-        //driver.get(source);
+        driver.get(YANDEX_LOGIN_PAGE);
     }
 
     @AfterEach

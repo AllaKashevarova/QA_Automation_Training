@@ -9,21 +9,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static com.coherent.task40.TestConstants.*;
 
-public class AlertsTest {
+public class AlertsTest extends BaseTest {
     WebDriver driver = new ChromeDriver();
     By confirmBoxButton = By.xpath("//button[@onclick='myConfirmFunction()']");
     By alertBoxButton = By.xpath("//button[@onclick='myAlertFunction()']");
     String confirmBoxText = "Press a button!";
     String alertBoxText = "I am an alert box!";
 
-
-    @BeforeEach
-    void setUp() {
-        BaseTest.setup(driver, ALERTS_PAGE);
+    @Override
+    public void setup() {
+        super.setup();
     }
 
     @Test
     public void JavaScriptConfirmBoxTest1() {
+        driver.get(ALERTS_PAGE);
         driver.findElement(confirmBoxButton).click();
         Alert alert = driver.switchTo().alert();
         String textOnAlert = alert.getText();
@@ -33,6 +33,7 @@ public class AlertsTest {
 
     @Test
     public void JavaScriptConfirmBoxTest2() {
+        driver.get(ALERTS_PAGE);
         driver.findElement(confirmBoxButton).click();
         Alert alert = driver.switchTo().alert();
         String textOnAlert = alert.getText();
@@ -44,6 +45,7 @@ public class AlertsTest {
 
     @Test
     public void JavaScriptAlertBoxTest() {
+        driver.get(ALERTS_PAGE);
         driver.findElement(alertBoxButton).click();
         Alert alert = driver.switchTo().alert();
         String textOnAlert = alert.getText();
@@ -51,8 +53,8 @@ public class AlertsTest {
         Assertions.assertEquals(alertBoxText, textOnAlert);
     }
 
-    @AfterEach
+    @Override
     void cleanup() {
-        driver.quit();
+        super.cleanup();
     }
 }

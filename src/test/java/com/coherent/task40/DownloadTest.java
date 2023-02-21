@@ -14,13 +14,12 @@ import java.util.List;
 import java.util.regex.Pattern;
 import static com.coherent.task40.TestConstants.*;
 
-public class DownloadTest {
-    WebDriver driver = new ChromeDriver();
+public class DownloadTest extends BaseTest{
 
-    @BeforeEach
-    void setup() {
-        BaseTest.setup(driver, DOWNLOAD_USER_PAGE);
-    }
+//    @BeforeEach
+//    void setup() {
+//        BaseTest.setup(driver, DOWNLOAD_USER_PAGE);
+//    }
 
     @Test
     public void download50Percentage() {

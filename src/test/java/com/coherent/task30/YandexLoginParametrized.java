@@ -17,13 +17,13 @@ import java.time.Duration;
 import static com.coherent.task40.TestConstants.YANDEX_LOGIN_PAGE;
 
 
-public class YandexLoginParametrized {
+public class YandexLoginParametrized extends BaseTest {
     WebDriver driver = new ChromeDriver();
     Locators locator = new Locators();
 
-    @BeforeEach
-    void setUp() {
-        BaseTest.setup(driver, YANDEX_LOGIN_PAGE);
+    @Override
+    public void setup() {
+        super.setup();
     }
 
     @ParameterizedTest

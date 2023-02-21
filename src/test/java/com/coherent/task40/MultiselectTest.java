@@ -16,15 +16,15 @@ import java.util.List;
 
 import static com.coherent.task40.TestConstants.DROPDOWN_PAGE;
 
-public class MultiselectTest {
-    WebDriver driver = new ChromeDriver();
+public class MultiselectTest extends BaseTest{
+    //WebDriver driver = new ChromeDriver();
     By multiSelectDropdown = By.id("multi-select");
     List<String> actualOptionsList = new ArrayList<>();
     List<String> expectedOptionsList = Arrays.asList("California", "Florida", "New Jersey");
 
-    @BeforeEach
-    void setUp() {
-        BaseTest.setup(driver, DROPDOWN_PAGE);
+    @Override
+    public void setup() {
+        super.setup();
     }
 
     @Test

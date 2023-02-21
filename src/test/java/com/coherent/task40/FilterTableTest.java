@@ -14,13 +14,14 @@ import java.util.List;
 
 import static com.coherent.task40.TestConstants.SORT_TABLE_PAGE;
 
-public class FilterTableTest {
+public class FilterTableTest extends BaseTest {
     WebDriver driver = new ChromeDriver();
 
-    @BeforeEach
-    void setup() {
-        BaseTest.setup(driver, SORT_TABLE_PAGE);
+    @Override
+    public void setup() {
+        super.setup();
     }
+
     @Test
     public void customObjectsTest() {
         int expectedListSize = 4;

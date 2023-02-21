@@ -14,20 +14,20 @@ import java.time.Duration;
 
 import static com.coherent.task40.TestConstants.YANDEX_LOGIN_PAGE;
 
-public class YandexLogin {
+public class YandexLogin extends BaseTest {
     WebDriver driver = new ChromeDriver();
     Locators locator = new Locators();
-    private String expectedUserName = "fine.lname";
     private String username = "fine.lname";
     private String password = "p8Usc@jheBHhUZ3";
 
-    @BeforeEach
-    void setUp() {
-        BaseTest.setup(driver, YANDEX_LOGIN_PAGE);
+    @Override
+    public void setup() {
+        super.setup();
     }
 
     @Test
     void logInYandexMailbox() {
+        driver.get(YANDEX_LOGIN_PAGE);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
         driver.findElement(locator.logInButtonMain).click();
         wait.until(ExpectedConditions.elementToBeClickable(locator.userName));
@@ -39,11 +39,8 @@ public class YandexLogin {
 
         WebElement spanElement = wait.until(ExpectedConditions.visibilityOfElementLocated(locator.userNickName));
         String text = spanElement.getText();
-        Assertions.assertEquals(expectedUserName, text);
+        Assertions.assertEquals(username, text);
     }
 
-    @AfterEach
-    void cleanup() {
-        driver.quit();
-    }
+
 }
