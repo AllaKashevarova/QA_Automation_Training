@@ -2,19 +2,16 @@ package com.coherent.task40;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import static com.coherent.task40.TestConstants.*;
 
 public class AlertsTest extends BaseTest {
-    WebDriver driver = new ChromeDriver();
-    By confirmBoxButton = By.xpath("//button[@onclick='myConfirmFunction()']");
-    By alertBoxButton = By.xpath("//button[@onclick='myAlertFunction()']");
-    String confirmBoxText = "Press a button!";
-    String alertBoxText = "I am an alert box!";
+    private By confirmBoxButton = By.xpath("//button[@onclick='myConfirmFunction()']");
+    private By alertBoxButton = By.xpath("//button[@onclick='myAlertFunction()']");
+    private String confirmBoxText = "Press a button!";
+    private String alertBoxText = "I am an alert box!";
 
     @Override
     public void setup() {
@@ -23,6 +20,7 @@ public class AlertsTest extends BaseTest {
 
     @Test
     public void JavaScriptConfirmBoxTest1() {
+        //QUESTION: all tests take too long to execute. What can be the reason?
         driver.get(ALERTS_PAGE);
         driver.findElement(confirmBoxButton).click();
         Alert alert = driver.switchTo().alert();
@@ -38,7 +36,6 @@ public class AlertsTest extends BaseTest {
         Alert alert = driver.switchTo().alert();
         String textOnAlert = alert.getText();
         alert.accept();
-
         WebElement message = driver.findElement(By.id("confirm-demo"));
         Assertions.assertEquals("You pressed OK!", message.getText());
     }
@@ -53,8 +50,10 @@ public class AlertsTest extends BaseTest {
         Assertions.assertEquals(alertBoxText, textOnAlert);
     }
 
+    @AfterEach
     @Override
-    void cleanup() {
+    protected void cleanup() {
         super.cleanup();
     }
+
 }

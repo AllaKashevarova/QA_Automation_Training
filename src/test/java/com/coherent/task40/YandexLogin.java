@@ -1,13 +1,9 @@
-package com.coherent.task30;
+package com.coherent.task40;
 
-import com.coherent.task40.BaseTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -15,13 +11,12 @@ import java.time.Duration;
 import static com.coherent.task40.TestConstants.YANDEX_LOGIN_PAGE;
 
 public class YandexLogin extends BaseTest {
-    WebDriver driver = new ChromeDriver();
-    Locators locator = new Locators();
+    private Locators locator = new Locators();
     private String username = "fine.lname";
     private String password = "p8Usc@jheBHhUZ3";
 
     @Override
-    public void setup() {
+    protected void setup() {
         super.setup();
     }
 
@@ -42,5 +37,9 @@ public class YandexLogin extends BaseTest {
         Assertions.assertEquals(username, text);
     }
 
-
+    @AfterEach
+    @Override
+    protected void cleanup() {
+        super.cleanup();
+    }
 }

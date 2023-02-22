@@ -2,12 +2,9 @@ package com.coherent.task40;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +12,9 @@ import java.util.List;
 import static com.coherent.task40.TestConstants.SORT_TABLE_PAGE;
 
 public class FilterTableTest extends BaseTest {
-    WebDriver driver = new ChromeDriver();
+    private int expectedListSize = 3;
+    private int x = 30;
+    private int y = 200000;
 
     @Override
     public void setup() {
@@ -24,7 +23,7 @@ public class FilterTableTest extends BaseTest {
 
     @Test
     public void customObjectsTest() {
-        int expectedListSize = 4;
+        driver.get(SORT_TABLE_PAGE);
         List<WebElement> allCustomersRawData = driver.findElements(By.xpath("//tbody/tr[@role='row']"));
         List<Customer> customersData = new ArrayList<>();
         for (int i = 0; i < allCustomersRawData.size(); i++) {
@@ -39,10 +38,9 @@ public class FilterTableTest extends BaseTest {
         }
         List<Customer> sortedCustomers = new ArrayList<>();
         for (Customer customer : customersData) {
-            if (customer.getAge() > 30 && customer.getSalary() > 200000) {
+            if (customer.getAge() > x && customer.getSalary() <= y) {
                 sortedCustomers.add(customer);
             }
-
         }
         sortedCustomers.forEach(System.out::println);
         int actualListSize = sortedCustomers.size();
@@ -50,7 +48,8 @@ public class FilterTableTest extends BaseTest {
     }
 
     @AfterEach
-    void cleanup() {
-        driver.quit();
+    @Override
+    protected void cleanup() {
+        super.cleanup();
     }
 }

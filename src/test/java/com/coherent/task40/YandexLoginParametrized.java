@@ -1,25 +1,17 @@
-package com.coherent.task30;
-import com.coherent.task40.BaseTest;
+package com.coherent.task40;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-
 import static com.coherent.task40.TestConstants.YANDEX_LOGIN_PAGE;
 
-
 public class YandexLoginParametrized extends BaseTest {
-    WebDriver driver = new ChromeDriver();
-    Locators locator = new Locators();
+    private Locators locator = new Locators();
 
     @Override
     public void setup() {
@@ -30,6 +22,7 @@ public class YandexLoginParametrized extends BaseTest {
     @CsvFileSource(resources = "/logInData.csv")
     @Test
     public void testLogIn(String name, String password) throws InterruptedException {
+        driver.get(YANDEX_LOGIN_PAGE);
         driver.findElement(locator.logInButtonMain).click();
         driver.findElement(locator.userName).sendKeys(name);
         driver.findElement(locator.logInButton).click();
@@ -51,7 +44,8 @@ public class YandexLoginParametrized extends BaseTest {
     }
 
     @AfterEach
-    void cleanup() {
-        driver.quit();
+    @Override
+    protected void cleanup() {
+        super.cleanup();
     }
 }

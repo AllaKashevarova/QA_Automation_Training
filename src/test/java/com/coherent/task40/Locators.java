@@ -1,4 +1,4 @@
-package com.coherent.task30;
+package com.coherent.task40;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,3 +18,4 @@ public class Locators {
     By variable = By.partialLinkText("Yandex");
     By tagName = By.tagName("span");
 }
+

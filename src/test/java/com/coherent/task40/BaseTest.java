@@ -6,21 +6,19 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     WebDriver driver = new ChromeDriver();
-    //String source;
 
     @BeforeEach
-    public void setup() {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    protected void setup() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().setSize(new Dimension(1700, 1000));
-        //driver.get(source);
     }
 
-    @AfterEach
-    void cleanup() {
+    protected void cleanup() {
         driver.quit();
     }
 }
