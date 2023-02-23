@@ -14,11 +14,6 @@ public class MultiselectTest extends BaseTest{
     private By multiSelectDropdown = By.id("multi-select");
     private List<String> actualOptionsList = new ArrayList<>();
 
-    @Override
-    public void setup() {
-        super.setup();
-    }
-
     @Test
     public void dropdownTest() {
         driver.get(DROPDOWN_PAGE);
@@ -36,11 +31,5 @@ public class MultiselectTest extends BaseTest{
         }
 
         Assertions.assertEquals(actualOptionsList, expectedOptionsList);
-    }
-
-    @AfterEach
-    @Override
-    protected void cleanup() {
-        super.cleanup();
     }
 }

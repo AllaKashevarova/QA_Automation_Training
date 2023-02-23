@@ -9,11 +9,6 @@ import static com.coherent.task40.TestConstants.*;
 
 public class DownloadTest extends BaseTest{
 
-    @Override
-    public void setup() {
-        super.setup();
-    }
-
     @Test
     public void download50Percentage() {
         driver.get(DOWNLOAD_USER_PAGE);
@@ -28,11 +23,5 @@ public class DownloadTest extends BaseTest{
         wait.until(ExpectedConditions.textMatches(percentText, pattern));
         driver.navigate().refresh();
         Assertions.assertEquals(driver.findElement(percentText).getText(), zeroPercent);
-    }
-
-    @AfterEach
-    @Override
-    protected void cleanup() {
-        super.cleanup();
     }
 }

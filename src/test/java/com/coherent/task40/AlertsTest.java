@@ -13,14 +13,8 @@ public class AlertsTest extends BaseTest {
     private String confirmBoxText = "Press a button!";
     private String alertBoxText = "I am an alert box!";
 
-    @Override
-    public void setup() {
-        super.setup();
-    }
-
     @Test
     public void JavaScriptConfirmBoxTest1() {
-        //QUESTION: all tests take too long to execute. What can be the reason?
         driver.get(ALERTS_PAGE);
         driver.findElement(confirmBoxButton).click();
         Alert alert = driver.switchTo().alert();
@@ -49,11 +43,4 @@ public class AlertsTest extends BaseTest {
         alert.accept();
         Assertions.assertEquals(alertBoxText, textOnAlert);
     }
-
-    @AfterEach
-    @Override
-    protected void cleanup() {
-        super.cleanup();
-    }
-
 }

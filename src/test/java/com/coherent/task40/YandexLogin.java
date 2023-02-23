@@ -15,11 +15,6 @@ public class YandexLogin extends BaseTest {
     private String username = "fine.lname";
     private String password = "p8Usc@jheBHhUZ3";
 
-    @Override
-    protected void setup() {
-        super.setup();
-    }
-
     @Test
     void logInYandexMailbox() {
         driver.get(YANDEX_LOGIN_PAGE);
@@ -35,11 +30,5 @@ public class YandexLogin extends BaseTest {
         WebElement spanElement = wait.until(ExpectedConditions.visibilityOfElementLocated(locator.userNickName));
         String text = spanElement.getText();
         Assertions.assertEquals(username, text);
-    }
-
-    @AfterEach
-    @Override
-    protected void cleanup() {
-        super.cleanup();
     }
 }

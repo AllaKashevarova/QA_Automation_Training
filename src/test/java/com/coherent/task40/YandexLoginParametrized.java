@@ -13,11 +13,6 @@ import static com.coherent.task40.TestConstants.YANDEX_LOGIN_PAGE;
 public class YandexLoginParametrized extends BaseTest {
     private Locators locator = new Locators();
 
-    @Override
-    public void setup() {
-        super.setup();
-    }
-
     @ParameterizedTest
     @CsvFileSource(resources = "/logInData.csv")
     @Test
@@ -41,11 +36,5 @@ public class YandexLoginParametrized extends BaseTest {
         //Task #3. Answer: this is an explicit waiter since it's only applicable on the step it's located in the code.
         Assertions.assertEquals(name, nickName);
 
-    }
-
-    @AfterEach
-    @Override
-    protected void cleanup() {
-        super.cleanup();
     }
 }

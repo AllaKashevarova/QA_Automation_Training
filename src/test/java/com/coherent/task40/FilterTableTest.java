@@ -16,11 +16,6 @@ public class FilterTableTest extends BaseTest {
     private int x = 30;
     private int y = 200000;
 
-    @Override
-    public void setup() {
-        super.setup();
-    }
-
     @Test
     public void customObjectsTest() {
         driver.get(SORT_TABLE_PAGE);
@@ -45,11 +40,5 @@ public class FilterTableTest extends BaseTest {
         sortedCustomers.forEach(System.out::println);
         int actualListSize = sortedCustomers.size();
         Assertions.assertEquals(expectedListSize, actualListSize);
-    }
-
-    @AfterEach
-    @Override
-    protected void cleanup() {
-        super.cleanup();
     }
 }

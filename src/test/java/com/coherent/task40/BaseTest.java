@@ -10,14 +10,16 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    WebDriver driver = new ChromeDriver();
+    protected WebDriver driver;
 
     @BeforeEach
     protected void setup() {
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().setSize(new Dimension(1700, 1000));
     }
 
+    @AfterEach
     protected void cleanup() {
         driver.quit();
     }

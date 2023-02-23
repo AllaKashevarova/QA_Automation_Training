@@ -15,11 +15,6 @@ import static com.coherent.task40.TestConstants.*;
 public class WaitUserTest extends BaseTest {
     private By userImage = By.xpath("//div[@id='loading']/img");
 
-    @Override
-    public void setup() {
-        super.setup();
-    }
-
     @Test
     public void userAppearTest(){
         driver.get(DYNAMIC_DATA_PAGE);
@@ -28,11 +23,5 @@ public class WaitUserTest extends BaseTest {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(userImage));
 
         Assertions.assertTrue(element.isDisplayed());
-    }
-
-    @AfterEach
-    @Override
-    protected void cleanup() {
-        super.cleanup();
     }
 }
