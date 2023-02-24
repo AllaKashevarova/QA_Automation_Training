@@ -14,13 +14,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginPage{
+public class LoginPage extends LoadableComponent{
     private String url = "https://mail.yandex.com";
-    private WebDriver driver;
     private WebElement login;
     private String userName = "fine.lname";
     private String password = "p8Usc@jheBHhUZ3";
     private String title = "Yandex Mail — reliable and easy to use email with spam protection";
+    //QUESTION: is that a good approach to instantiate driver singleton on a class level rather than write: Browser.driver() in each method here?
+    //In a book "Selenium 2 WebDriver Tools Cookbook" they use this form in each method: Browser.driver()
+    private WebDriver driver = Browser.driver();
 
     @FindBy(xpath = "//div[@class='ActionButtons_1KQUh4y2uqGFcS5C_M9sDV']/a[contains(@class,'Button2_view_default')]")
     @CacheLookup
@@ -34,7 +36,6 @@ public class LoginPage{
     public WebElement passwordField;
 
     public LoginPage() {
-        driver = new ChromeDriver();
         PageFactory.initElements(driver, this);
     }
 
@@ -43,28 +44,29 @@ public class LoginPage{
     //It would be great to discuss that on some meeting.
 
 //THE CODE THAT HASN'T BEEN WORKING PROPERLY:
-//    @Override
-//    protected void load() {
-//        this.driver.get(url);
-//    }
-//
-//    public void printTitleName(){
-//        System.out.println("Getting title...");
-//        System.out.println(driver.getTitle());
-//    }
-//
-//    @Override
-//    protected void isLoaded()  {
-//        Assertions.assertTrue(driver.getTitle().equals(title));
-//    }
-
-    public void load() {
+    @Override
+    protected void load() {
         this.driver.get(url);
     }
 
+//below method has been created just to debug why I can't get title from the page:
+    public void printTitleName(){
+        System.out.println("Getting title...");
+        System.out.println(driver.getTitle());
+    }
+
+    @Override
+    protected void isLoaded()  {
+        Assertions.assertTrue(driver.getTitle().equals(title));
+    }
+
+//    public void load() {
+//        this.driver.get(url);
+//    }
+
 
     public void cleanup(){
-        this.driver.quit();
+        driver.close();
     }
 
     public void logIn(){
