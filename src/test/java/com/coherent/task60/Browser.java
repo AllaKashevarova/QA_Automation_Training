@@ -6,7 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Browser {
     //QUESTION: is that correct approach to call singleton pattern?
     private static WebDriver driver = new ChromeDriver();
-    private SingleToneWebDriver singleToneWebDriver = SingleToneWebDriver.getUniqueInstance(driver);
+    //private SingletoneWebDriver singleToneWebDriver = SingletoneWebDriver.(driver);
+
 
     public static WebDriver driver() {
         return driver;
