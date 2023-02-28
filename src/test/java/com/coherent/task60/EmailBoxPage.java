@@ -17,6 +17,10 @@ public class EmailBoxPage {
     @CacheLookup
     public WebElement userNickName;
 
+    @FindBy(css = "//ul[@class='menu__group']/li[6]")
+    @CacheLookup
+    public WebElement logoutButton;
+
     LoginPage loginPage = new LoginPage();
 
     public EmailBoxPage() {
@@ -31,8 +35,6 @@ public class EmailBoxPage {
     public void logOut() throws IOException {
         loginPage.logIn();
         userNickName.click();
-
+        logoutButton.click();
     }
-
-
 }

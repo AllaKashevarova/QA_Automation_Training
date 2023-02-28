@@ -30,6 +30,4 @@ public class LoginTest {
     public void cleanup(){
         SingletoneWebDriver.cleanup();
     }
-
-
 }

@@ -9,8 +9,10 @@ public class PropertiesHelper {
 
 
     public String propertiesReader(String prop) throws IOException {
+        //TODO - verify recursion
         Properties properties = new Properties();
         InputStream inputStream;
+
 
         String propFileName = "login.properties";
 
