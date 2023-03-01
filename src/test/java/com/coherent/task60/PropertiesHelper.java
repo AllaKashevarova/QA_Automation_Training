@@ -8,25 +8,33 @@ import java.util.Properties;
 public class PropertiesHelper {
 
 
-    public String propertiesReader(String prop) throws IOException {
-        //TODO - verify recursion
+    public String propertiesReader(String prop) {
         Properties properties = new Properties();
         InputStream inputStream;
-
-
         String propFileName = "login.properties";
 
         inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
         if (inputStream != null) {
-            properties.load(inputStream);
+            try {
+                properties.load(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
-            throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            try {
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
-        inputStream.close();
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return properties.getProperty(prop);
-
     }
 }

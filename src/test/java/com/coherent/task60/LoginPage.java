@@ -15,20 +15,36 @@ public class LoginPage{
     private WebElement login;
     private WebDriver driver;
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
-    EmailBoxPage emailBoxPage = new EmailBoxPage();
 
     @FindBy(xpath = "//div[@class='ActionButtons_1KQUh4y2uqGFcS5C_M9sDV']/a[contains(@class,'Button2_view_default')]")
     @CacheLookup
-    public WebElement logInButton;
+    private WebElement logInButton;
 
     @FindBy(id = "passp:sign-in")
-    public WebElement logInButton2;
+    private WebElement logInButton2;
 
     @FindBy(id = "passp-field-passwd")
     @CacheLookup
-    public WebElement passwordField;
+    private WebElement passwordField;
 
-    public WebElement actualResult;
+    private WebElement actualResult;
+    EmailBoxPage emailBoxPage = new EmailBoxPage();
+
+    public WebElement getLogInButton() {
+        return logInButton;
+    }
+
+    public WebElement getLogInButton2() {
+        return logInButton2;
+    }
+
+    public WebElement getPasswordField() {
+        return passwordField;
+    }
+
+    public WebElement getActualResult() {
+        return actualResult;
+    }
 
     public LoginPage() {
         driver = SingletoneWebDriver.getDriver();
@@ -41,13 +57,13 @@ public class LoginPage{
 
     public void logIn() throws IOException {
         logInButton.click();
-        String userName = propertiesHelper.propertiesReader("userName");
+        String userName = propertiesHelper.propertiesReader("user.name");
         login.sendKeys(userName);
         logInButton2.click();
-        String password = propertiesHelper.propertiesReader("password");
+        String password = propertiesHelper.propertiesReader("user.password");
         passwordField.sendKeys(password);
         logInButton2.click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
-        actualResult = wait.until(ExpectedConditions.visibilityOf(emailBoxPage.userNickName));
+        actualResult = wait.until(ExpectedConditions.visibilityOf(emailBoxPage.getUserNickName()));
     }
 }

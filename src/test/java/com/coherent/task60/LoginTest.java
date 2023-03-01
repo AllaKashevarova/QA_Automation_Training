@@ -11,9 +11,10 @@ import java.time.Duration;
 
 public class LoginTest {
     PropertiesHelper propertiesHelper = new PropertiesHelper();
-    private String userName = propertiesHelper.propertiesReader("userName");
+    private String userName;
 
-    public LoginTest() throws IOException {
+    {
+        userName = propertiesHelper.propertiesReader("user.name");
     }
 
     @Test
@@ -21,7 +22,7 @@ public class LoginTest {
         LoginPage loginPage = new LoginPage();
         loginPage.load();
         loginPage.logIn();
-        WebElement actualResult = loginPage.actualResult;
+        WebElement actualResult = loginPage.getActualResult();
 
         Assertions.assertEquals(actualResult.getText(), userName);
     }

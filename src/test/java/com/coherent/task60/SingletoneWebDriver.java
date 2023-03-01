@@ -7,8 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public final class SingletoneWebDriver {
     private static WebDriver driver;
 
-    private SingletoneWebDriver(WebDriver driver) {
-        this.driver = driver;
+   private SingletoneWebDriver() {
     }
 
     public static WebDriver getDriver(){

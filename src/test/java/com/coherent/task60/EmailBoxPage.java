@@ -5,8 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class EmailBoxPage {
 
@@ -15,25 +18,30 @@ public class EmailBoxPage {
 
     @FindBy(css = "#js-apps-container .user-account__name")
     @CacheLookup
-    public WebElement userNickName;
+    private WebElement userNickName;
 
-    @FindBy(css = "//ul[@class='menu__group']/li[6]")
+    @FindBy(xpath = "//ul[@class='menu__group']/li[6]")
     @CacheLookup
-    public WebElement logoutButton;
-
-    LoginPage loginPage = new LoginPage();
+    private WebElement logoutButton;
 
     public EmailBoxPage() {
         driver = SingletoneWebDriver.getDriver();
         PageFactory.initElements(driver, this);
     }
 
-    public void load() throws IOException {
-        this.driver.get(propertiesHelper.propertiesReader("url"));
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public WebElement getUserNickName() {
+        return userNickName;
+    }
+
+    public WebElement getLogoutButton() {
+        return logoutButton;
     }
 
     public void logOut() throws IOException {
-        loginPage.logIn();
         userNickName.click();
         logoutButton.click();
     }
