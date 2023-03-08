@@ -17,43 +17,47 @@ public class EmailBoxPage {
     private WebDriver driver;
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
 
-    @FindBy(css = "#js-apps-container .user-account__name")
-    @CacheLookup
-    private WebElement userNickName;
+//    @FindBy(css = "#js-apps-container .user-account__name")
+//    @CacheLookup
+//    private WebElement userNickName;
+    private By userNickName = By.cssSelector("#js-apps-container .user-account__name");
 
-    @FindBy(xpath = "//ul[@class='menu__group']/li[6]")
-    @CacheLookup
-    private WebElement logoutButton;
 
-    @FindBy (xpath = "//div[@class='ActionButtons_1KQUh4y2uqGFcS5C_M9sDV']/a[contains(@class,'Button2_view_default')]")
-    private WebElement logInButtonLocator;
+//    @FindBy(xpath = "//ul[@class='menu__group']/li[6]")
+//    @CacheLookup
+//    private WebElement logoutButton;
+    private By logoutButton = By.xpath("//ul[@class='menu__group']/li[6]");
+
+//    @FindBy (xpath = "//div[@class='ActionButtons_1KQUh4y2uqGFcS5C_M9sDV']/a[contains(@class,'Button2_view_default')]")
+//    private WebElement logInButtonLocator;
+    private By logInButtonLocator = By.xpath("//div[@class='ActionButtons_1KQUh4y2uqGFcS5C_M9sDV']/a[contains(@class,'Button2_view_default')]");
 
 
     public EmailBoxPage() {
         driver = SingletoneWebDriver.getDriver();
-        PageFactory.initElements(driver, this);
+        //PageFactory.initElements(driver, this);
     }
 
     public WebDriver getDriver() {
         return driver;
     }
 
-    public WebElement getUserNickName() {
+    public By getUserNickName() {
         return userNickName;
     }
 
-    public WebElement getLogoutButton() {
+    public By getLogoutButton() {
         return logoutButton;
     }
 
     public WebElement getLogInButtonLocator() {
-        return logInButtonLocator;
+        return driver.findElement(logInButtonLocator);
     }
 
     public void logOut() throws IOException {
-        userNickName.click();
-        logoutButton.click();
+        driver.findElement(userNickName).click();
+        driver.findElement(logoutButton).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
-        wait.until(ExpectedConditions.visibilityOf(logInButtonLocator));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(logInButtonLocator));
     }
 }
