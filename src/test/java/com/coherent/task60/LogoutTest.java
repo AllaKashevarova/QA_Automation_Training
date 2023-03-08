@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class LogoutTest {
-    private By logInButtonLocator = By.xpath("//div[@class='ActionButtons_1KQUh4y2uqGFcS5C_M9sDV']/a[contains(@class,'Button2_view_default')]");
+
 
     @Test
     public void logoutTest() throws IOException {
@@ -26,11 +26,7 @@ public class LogoutTest {
         loginPage.logIn();
         emailBoxPage.logOut();
 
-        WebElement logInButton = driver.findElement(logInButtonLocator);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
-        wait.until(ExpectedConditions.visibilityOf(logInButton));
-
-        Assertions.assertTrue(logInButton.isDisplayed());
+        Assertions.assertTrue(emailBoxPage.getLogInButtonLocator().isDisplayed());
     }
 
     @AfterEach

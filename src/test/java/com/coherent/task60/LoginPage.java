@@ -27,8 +27,11 @@ public class LoginPage{
     @CacheLookup
     private WebElement passwordField;
 
+    @FindBy(css = "#js-apps-container .user-account__name")
+    @CacheLookup
+    private WebElement userNickName;
+
     private WebElement actualResult;
-    EmailBoxPage emailBoxPage = new EmailBoxPage();
 
     public WebElement getLogInButton() {
         return logInButton;
@@ -43,6 +46,8 @@ public class LoginPage{
     }
 
     public WebElement getActualResult() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
+        actualResult = wait.until(ExpectedConditions.visibilityOf(userNickName));
         return actualResult;
     }
 
@@ -63,7 +68,6 @@ public class LoginPage{
         String password = propertiesHelper.propertiesReader("user.password");
         passwordField.sendKeys(password);
         logInButton2.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
-        actualResult = wait.until(ExpectedConditions.visibilityOf(emailBoxPage.getUserNickName()));
+        getActualResult();
     }
 }

@@ -22,9 +22,9 @@ public class LoginTest {
         LoginPage loginPage = new LoginPage();
         loginPage.load();
         loginPage.logIn();
-        WebElement actualResult = loginPage.getActualResult();
+        String actualResultText = loginPage.getActualResult().getText();
 
-        Assertions.assertEquals(actualResult.getText(), userName);
+        Assertions.assertEquals(actualResultText, userName);
     }
 
     @AfterEach
