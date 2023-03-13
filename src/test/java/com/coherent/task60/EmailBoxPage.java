@@ -12,13 +12,9 @@ public class EmailBoxPage {
 
     private WebDriver driver;
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
-
     private By userNickName = By.cssSelector("#js-apps-container .user-account__name");
-
     private By logoutButton = By.xpath("//ul[@class='menu__group']/li[6]");
-
     private By logInButtonLocator = By.xpath("//div[@class='ActionButtons_1KQUh4y2uqGFcS5C_M9sDV']/a[contains(@class,'Button2_view_default')]");
-
 
     public EmailBoxPage() {
         driver = SingletoneWebDriver.getDriver();
