@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Date;
 
 public class ScreenshotHelper {
-    private static WebDriver driver;
+    //private static WebDriver driver;
     private Date d = new Date();
     private String TimeStamp = d.toString().replace(":", "_").replace(" ", "_");
 
