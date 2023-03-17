@@ -8,10 +8,7 @@ import java.io.IOException;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class LogoutTest {
-    private ScreenshotHelper screenshotHelper = new ScreenshotHelper();
-    private PropertiesHelper propertiesHelper = new PropertiesHelper();
     private LoginPage loginPage = new LoginPage();
-    private String path = propertiesHelper.propertiesReader("error.screenshots");;
 
     @Test
     public void logoutTest() throws IOException {

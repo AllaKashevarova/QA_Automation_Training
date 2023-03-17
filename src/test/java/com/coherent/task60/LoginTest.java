@@ -8,14 +8,11 @@ import java.io.IOException;
 @ExtendWith(TestResultLoggerExtension.class)
 public class LoginTest {
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
-    private ScreenshotHelper screenshotHelper = new ScreenshotHelper();
     private LoginPage loginPage = new LoginPage();
     private String userName;
-    private String path;
 
     {
         userName = propertiesHelper.propertiesReader("user.name");
-        path = propertiesHelper.propertiesReader("error.screenshots");
     }
 
     @Test

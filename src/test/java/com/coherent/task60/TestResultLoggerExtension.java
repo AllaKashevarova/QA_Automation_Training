@@ -12,9 +12,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback {
-    private List<TestResultStatus> testResultsStatus = new ArrayList<>();
+
     private ScreenshotHelper screenshotHelper = new ScreenshotHelper();
-    private LoginPage loginPage = new LoginPage();
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
     private String path = propertiesHelper.propertiesReader("error.screenshots");
 
@@ -24,11 +23,6 @@ public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback 
 //                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
     }
-
-    private enum TestResultStatus {
-         FAILED
-    }
-
 
     @Override
     public void testDisabled(ExtensionContext context, Optional<String> reason) {
@@ -49,7 +43,7 @@ public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback 
     public void testFailed(ExtensionContext context, Throwable cause) {
         System.out.println("Test Failed for test {}: ");
 
-        screenshotHelper.takeScreenshot(loginPage.getDriver(), path);
+        screenshotHelper.takeScreenshot(SingletoneWebDriver.getDriver(), path);
     }
 }
 
