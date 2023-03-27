@@ -1,12 +1,14 @@
 package com.coherent.task60;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.extension.ExtendWith;
 import java.io.IOException;
 
+@ExtendWith(TestResultLoggerExtension.class)
 public class LoginTest {
-    PropertiesHelper propertiesHelper = new PropertiesHelper();
+    private PropertiesHelper propertiesHelper = new PropertiesHelper();
+    private LoginPage loginPage = new LoginPage();
     private String userName;
 
     {
@@ -15,16 +17,19 @@ public class LoginTest {
 
     @Test
     public void loginTest() throws IOException {
-        LoginPage loginPage = new LoginPage();
         loginPage.load();
         loginPage.logIn();
         String actualResultText = loginPage.getActualResult().getText();
 
-        Assertions.assertEquals(actualResultText, userName);
+        Assertions.assertEquals(actualResultText, "Test!");
+        //Assertions.assertEquals(actualResultText, userName);
     }
 
-    @AfterEach
-    public void cleanup(){
+    @AfterAll
+    public static void cleanup() {
         SingletoneWebDriver.cleanup();
     }
 }
+
+
+

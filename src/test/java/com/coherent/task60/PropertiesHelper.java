@@ -7,7 +7,6 @@ import java.util.Properties;
 
 public class PropertiesHelper {
 
-
     public String propertiesReader(String prop) {
         Properties properties = new Properties();
         InputStream inputStream;
