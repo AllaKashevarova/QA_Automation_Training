@@ -1,4 +1,5 @@
 package com.coherent.task60;
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ public class LoginTest {
         userName = propertiesHelper.propertiesReader("user.name");
     }
 
+    @Description("Bla bla")
     @Test
     public void loginTest() throws IOException {
         loginPage.load();
