@@ -1,8 +1,12 @@
 package com.coherent.task60;
+import io.qameta.allure.Feature;
+import io.qameta.allure.junit5.AllureJunit5;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpHead;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import java.io.File;
@@ -17,6 +21,8 @@ public class BottlenecksTest {
     private WebDriver driver;
     private String downloadPath = "/Users/alakashavarava/Documents/GitHub/QA_Automation_Training/src/test/resources/downloads/";
 
+    @ExtendWith({AllureJunit5.class})
+    @Feature("Load test")
     @Test
     public void downloadFileRevisitedTest() throws Exception {
         ChromeOptions options = new ChromeOptions();
@@ -37,7 +43,7 @@ public class BottlenecksTest {
         driver.findElement(By.cssSelector(".example a:nth-of-type(1)")).click();
 
         try {
-            Thread.sleep(5000); // Wait for 5 seconds
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
