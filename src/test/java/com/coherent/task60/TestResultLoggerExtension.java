@@ -1,4 +1,5 @@
 package com.coherent.task60;
+import io.qameta.allure.Attachment;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 //import org.junit.rules.TestWatcher;
@@ -21,7 +22,6 @@ public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback 
     public void afterAll(ExtensionContext extensionContext) throws Exception {
 //        Map<TestResultStatus, Long> summary = testResultsStatus.stream()
 //                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
     }
 
     @Override
@@ -42,8 +42,13 @@ public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback 
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
         System.out.println("Test Failed for test {}: ");
+        byte[] screenshot = screenshotHelper.attachScreenshot(SingletoneWebDriver.getDriver());
+        attachScreenshot(screenshot);
+    }
 
-        screenshotHelper.takeScreenshot(SingletoneWebDriver.getDriver(), path);
+    @Attachment(value = "Screenshot", type = "image/png")
+    private byte[] attachScreenshot(byte[] screenshot) {
+        return screenshot;
     }
 }
 

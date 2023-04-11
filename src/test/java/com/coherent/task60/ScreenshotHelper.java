@@ -23,6 +23,12 @@ public class ScreenshotHelper {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
-}
+
+        public byte[] attachScreenshot(WebDriver driver) {
+            TakesScreenshot scrShot = ((TakesScreenshot) driver);
+            byte[] screenshot = scrShot.getScreenshotAs(OutputType.BYTES);
+            return screenshot;
+        }
+    }
+
