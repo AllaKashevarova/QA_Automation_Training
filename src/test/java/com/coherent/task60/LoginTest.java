@@ -24,8 +24,6 @@ public class LoginTest extends BaseTest {
         userName = propertiesHelper.propertiesReader("user.name");
     }
 
-
-
     @Description("Test Description: Test Login to Yandex mail")
     @Test
     @DisplayName("Log In Test")
