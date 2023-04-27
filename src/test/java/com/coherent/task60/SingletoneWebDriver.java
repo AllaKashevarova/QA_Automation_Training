@@ -4,7 +4,9 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,23 +17,64 @@ import java.util.Map;
 
 public final class SingletoneWebDriver {
     private static RemoteWebDriver driver;
+    private static PropertiesHelper propertiesHelper = new PropertiesHelper();
+    private static String environment1PropFile = "environment_1.properties";
+
 
    private SingletoneWebDriver() {
     }
 
     public static WebDriver getDriver(){
+        String platformName = propertiesHelper.propertiesReader("platform", environment1PropFile);
+        String browserVersion = propertiesHelper.propertiesReader("browserVersion", environment1PropFile);
+        String browserArguments = propertiesHelper.propertiesReader("browser.arguments", environment1PropFile);
+        String saucelabsBuild = propertiesHelper.propertiesReader("saucelabs.build", environment1PropFile);
+        String saucelabsName = propertiesHelper.propertiesReader("saucelabs.name", environment1PropFile);
 
-       //QUESTION: If I want to run tests on several browsers and operating systems: how can I effectively set up the tests?
-        ChromeOptions browserOptions = new ChromeOptions();
+
+        switch (browserName){
+            case "chrome":
+                ChromeOptions browserOptions = new ChromeOptions();
+
+                browserOptions.setPlatformName(platformName);
+                browserOptions.setBrowserVersion(browserVersion);
+                browserOptions.addArguments(browserArguments);
+                driver = new ChromeDriver(browserOptions);
+
+                break;
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setPlatformName(platformName);
+                firefoxOptions.setBrowserVersion(browserVersion);
+
+                driver = new FirefoxDriver(firefoxOptions);
+                break;
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.setPlatformName(platformName);
+                edgeOptions.setBrowserVersion(browserVersion);
+
+                driver = new EdgeDriver(edgeOptions);
+                break;
+
+        }
+
+        //How to make this code unique for each browser?
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("build", saucelabsBuild);
+        sauceOptions.put("name", saucelabsName);
+        browserOptions.setCapability("sauce:options", sauceOptions);
+
+
+
         //EdgeOptions browserOptions = new EdgeOptions();
         //FirefoxOptions browserOptions = new FirefoxOptions();
-        browserOptions.setPlatformName("macOS 11.00");
-        browserOptions.setBrowserVersion("latest");
-        browserOptions.addArguments("--remote-allow-origins=*");
-        Map<String, Object> sauceOptions = new HashMap<>();
-        sauceOptions.put("build", "selenium-build-XC063");
-        sauceOptions.put("name", "Mac + Chrome (latest)");
-        browserOptions.setCapability("sauce:options", sauceOptions);
+
+//        browserOptions.setPlatformName(platformName);
+//        browserOptions.setBrowserVersion(browserV);
+
+//        browserOptions.addArguments("--remote-allow-origins=*");
+
 
         URL url = null;
         try {

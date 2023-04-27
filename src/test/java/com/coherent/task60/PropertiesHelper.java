@@ -7,10 +7,9 @@ import java.util.Properties;
 
 public class PropertiesHelper {
 
-    public String propertiesReader(String prop) {
+    public String propertiesReader(String prop, String propFileName) {
         Properties properties = new Properties();
         InputStream inputStream;
-        String propFileName = "login.properties";
 
         inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
