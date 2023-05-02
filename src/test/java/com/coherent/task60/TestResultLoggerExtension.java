@@ -16,12 +16,9 @@ public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback 
 
     private ScreenshotHelper screenshotHelper = new ScreenshotHelper();
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
-    private String path = propertiesHelper.propertiesReader("error.screenshots");
+    private String path = propertiesHelper.propertiesReader("error.screenshots", "login.properties");
 
-    // @Override
     public void afterAll(ExtensionContext extensionContext) throws Exception {
-//        Map<TestResultStatus, Long> summary = testResultsStatus.stream()
-//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
     @Override

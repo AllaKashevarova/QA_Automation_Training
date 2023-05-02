@@ -1,6 +1,8 @@
 package com.coherent.task60;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,61 +22,48 @@ public final class SingletoneWebDriver {
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();
     private static String environment1PropFile = "environment_1.properties";
 
-
-   private SingletoneWebDriver() {
+    private SingletoneWebDriver() {
     }
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         String platformName = propertiesHelper.propertiesReader("platform", environment1PropFile);
+        String browserName = propertiesHelper.propertiesReader("browser", environment1PropFile);
         String browserVersion = propertiesHelper.propertiesReader("browserVersion", environment1PropFile);
         String browserArguments = propertiesHelper.propertiesReader("browser.arguments", environment1PropFile);
         String saucelabsBuild = propertiesHelper.propertiesReader("saucelabs.build", environment1PropFile);
+        String saucelabsUrl = propertiesHelper.propertiesReader("saucelabs.url", environment1PropFile);
         String saucelabsName = propertiesHelper.propertiesReader("saucelabs.name", environment1PropFile);
+        MutableCapabilities mutableCapabilities = null;
 
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("build", saucelabsBuild);
+        sauceOptions.put("name", saucelabsName);
 
-        switch (browserName){
-            case "chrome":
-                ChromeOptions browserOptions = new ChromeOptions();
-
-                browserOptions.setPlatformName(platformName);
-                browserOptions.setBrowserVersion(browserVersion);
-                browserOptions.addArguments(browserArguments);
-                driver = new ChromeDriver(browserOptions);
-
+        switch (browserName) {
+            case "CHROME":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setPlatformName(platformName);
+                chromeOptions.setBrowserVersion(browserVersion);
+                chromeOptions.setCapability("sauce:options", sauceOptions);
+                mutableCapabilities = chromeOptions;
                 break;
-            case "firefox":
+            case "FIREFOX":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setPlatformName(platformName);
                 firefoxOptions.setBrowserVersion(browserVersion);
 
-                driver = new FirefoxDriver(firefoxOptions);
+                firefoxOptions.setCapability("sauce:options", sauceOptions);
+                mutableCapabilities = firefoxOptions;
                 break;
-            case "edge":
+            case "EDGE":
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.setPlatformName(platformName);
                 edgeOptions.setBrowserVersion(browserVersion);
-
-                driver = new EdgeDriver(edgeOptions);
+                mutableCapabilities = edgeOptions;
                 break;
-
+            default:
+                throw new IllegalArgumentException("Invalid Browser name. Use one of the following: Chrome, Firefox, Edge");
         }
-
-        //How to make this code unique for each browser?
-        Map<String, Object> sauceOptions = new HashMap<>();
-        sauceOptions.put("build", saucelabsBuild);
-        sauceOptions.put("name", saucelabsName);
-        browserOptions.setCapability("sauce:options", sauceOptions);
-
-
-
-        //EdgeOptions browserOptions = new EdgeOptions();
-        //FirefoxOptions browserOptions = new FirefoxOptions();
-
-//        browserOptions.setPlatformName(platformName);
-//        browserOptions.setBrowserVersion(browserV);
-
-//        browserOptions.addArguments("--remote-allow-origins=*");
-
 
         URL url = null;
         try {
@@ -83,15 +72,14 @@ public final class SingletoneWebDriver {
             throw new RuntimeException(e);
         }
 
-        if(driver == null){
-            driver = new RemoteWebDriver(url, browserOptions);
+        if (driver == null) {
+            driver = new RemoteWebDriver(url, mutableCapabilities);
             driver.manage().window().setSize(new Dimension(1700, 1000));
-            //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
         return driver;
     }
 
-    public static void cleanup(){
+    public static void cleanup() {
         driver.close();
         driver = null;
     }

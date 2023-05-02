@@ -8,12 +8,12 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class EnvironmentHelper {
-
-    private static PropertiesHelper propertiesHelper = new PropertiesHelper();
-    private static String environment1PropFile = "environment_1.properties";
-    private static WebDriver driver;
-
-    public static String selectEnvironment(String browserName){
+//
+//    private static PropertiesHelper propertiesHelper = new PropertiesHelper();
+//    private static String environment1PropFile = "environment_1.properties";
+//    private static WebDriver driver;
+//
+//    public static String selectEnvironment(String browserName){
 
 //        switch (browserName){
 //            case "chrome":
@@ -33,7 +33,7 @@ public class EnvironmentHelper {
 
 
 
-    }
+//    }
 
 
 }
