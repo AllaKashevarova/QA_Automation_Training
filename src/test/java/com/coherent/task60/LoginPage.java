@@ -42,19 +42,19 @@ public class LoginPage {
     }
 
     public void load() throws IOException {
-        this.driver.get(propertiesHelper.propertiesReader("url"));
+        this.driver.get(propertiesHelper.propertiesReader("url", "login.properties"));
     }
 
     public void logIn() throws IOException {
         driver.findElement(logInButton).click();
-        String userName = propertiesHelper.propertiesReader("user.name");
+        String userName = propertiesHelper.propertiesReader("user.name", "login.properties");
         driver.findElement(login).sendKeys(userName);
         driver.findElement(logInButton2).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordField));
 
-        String password = propertiesHelper.propertiesReader("user.password");
+        String password = propertiesHelper.propertiesReader("user.password", "login.properties");
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(logInButton2).click();
         getActualResult();

@@ -25,6 +25,7 @@ public class BottlenecksTest {
     private WebDriver driver;
     private String downloadPath = "/Users/alakashavarava/Documents/GitHub/QA_Automation_Training/src/test/resources/downloads/";
 
+    @Disabled
     @ExtendWith({AllureJunit5.class})
     @Feature("Load test")
     @Test

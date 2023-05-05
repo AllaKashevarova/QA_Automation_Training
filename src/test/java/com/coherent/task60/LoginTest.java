@@ -19,12 +19,11 @@ public class LoginTest extends BaseTest {
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
     private LoginPage loginPage = new LoginPage();
     private String userName;
+    private String loginPropertiesFile = "login.properties";
 
     {
-        userName = propertiesHelper.propertiesReader("user.name");
+        userName = propertiesHelper.propertiesReader("user.name", loginPropertiesFile);
     }
-
-
 
     @Description("Test Description: Test Login to Yandex mail")
     @Test
