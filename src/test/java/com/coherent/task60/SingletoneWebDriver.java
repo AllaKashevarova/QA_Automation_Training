@@ -6,16 +6,15 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import java.util.HashMap;
 import java.util.Map;
+
 
 public final class SingletoneWebDriver {
     private static RemoteWebDriver driver;
@@ -24,6 +23,7 @@ public final class SingletoneWebDriver {
 
     private SingletoneWebDriver() {
     }
+
 
     public static WebDriver getDriver() {
         String platformName = propertiesHelper.propertiesReader("platform", environment1PropFile);
@@ -73,6 +73,7 @@ public final class SingletoneWebDriver {
 
         if (driver == null) {
             driver = new RemoteWebDriver(url, mutableCapabilities);
+
             driver.manage().window().setSize(new Dimension(1700, 1000));
         }
         return driver;

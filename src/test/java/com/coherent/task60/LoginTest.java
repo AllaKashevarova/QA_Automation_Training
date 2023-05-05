@@ -33,8 +33,8 @@ public class LoginTest extends BaseTest {
         loginPage.logIn();
         String actualResultText = loginPage.getActualResult().getText();
 
-        Assertions.assertEquals(actualResultText, "Test!");
-        //Assertions.assertEquals(actualResultText, userName);
+        //Assertions.assertEquals(actualResultText, "Test!");
+        Assertions.assertEquals(actualResultText, userName);
     }
 
 

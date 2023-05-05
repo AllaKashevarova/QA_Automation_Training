@@ -27,8 +27,8 @@ public class LogoutTest extends BaseTest {
         loginPage.logIn();
         emailBoxPage.logOut();
 
-        //Assertions.assertTrue(emailBoxPage.getLogInButtonLocator().isDisplayed());
-        Assertions.assertTrue(emailBoxPage.getLogInButtonLocator().isSelected());
+        Assertions.assertTrue(emailBoxPage.getLogInButtonLocator().isDisplayed());
+        //Assertions.assertTrue(emailBoxPage.getLogInButtonLocator().isSelected());
     }
 
 }
