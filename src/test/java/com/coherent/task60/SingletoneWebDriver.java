@@ -29,7 +29,6 @@ public final class SingletoneWebDriver {
         String platformName = propertiesHelper.propertiesReader("platform", environment1PropFile);
         String browserName = propertiesHelper.propertiesReader("browser", environment1PropFile);
         String browserVersion = propertiesHelper.propertiesReader("browserVersion", environment1PropFile);
-        String browserArguments = propertiesHelper.propertiesReader("browser.arguments", environment1PropFile);
         String saucelabsBuild = propertiesHelper.propertiesReader("saucelabs.build", environment1PropFile);
         String saucelabsUrl = propertiesHelper.propertiesReader("saucelabs.url", environment1PropFile);
         String saucelabsName = propertiesHelper.propertiesReader("saucelabs.name", environment1PropFile);
@@ -67,7 +66,7 @@ public final class SingletoneWebDriver {
 
         URL url = null;
         try {
-            url = new URL("https://oauth-allieishere2-509c8:ff01d6ac-17b9-47fe-8c63-8bfe8da19482@ondemand.eu-central-1.saucelabs.com:443/wd/hub");
+            url = new URL(saucelabsUrl);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
