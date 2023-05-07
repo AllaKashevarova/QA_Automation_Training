@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -24,7 +26,6 @@ public final class SingletoneWebDriver {
     private SingletoneWebDriver() {
     }
 
-
     public static WebDriver getDriver() {
         String platformName = propertiesHelper.propertiesReader("platform", environment1PropFile);
         String browserName = propertiesHelper.propertiesReader("browser", environment1PropFile);
@@ -33,6 +34,7 @@ public final class SingletoneWebDriver {
         String saucelabsUrl = propertiesHelper.propertiesReader("saucelabs.url", environment1PropFile);
         String saucelabsName = propertiesHelper.propertiesReader("saucelabs.name", environment1PropFile);
         MutableCapabilities mutableCapabilities = null;
+        URL url = null;
 
         Map<String, Object> sauceOptions = new HashMap<>();
         sauceOptions.put("build", saucelabsBuild);
@@ -64,7 +66,6 @@ public final class SingletoneWebDriver {
                 throw new IllegalArgumentException("Invalid Browser name. Use one of the following: Chrome, Firefox, Edge");
         }
 
-        URL url = null;
         try {
             url = new URL(saucelabsUrl);
         } catch (MalformedURLException e) {
