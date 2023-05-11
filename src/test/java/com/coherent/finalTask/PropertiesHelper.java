@@ -1,8 +1,6 @@
 package com.coherent.finalTask;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class PropertiesHelper {
@@ -11,7 +9,12 @@ public class PropertiesHelper {
         Properties properties = new Properties();
         InputStream inputStream;
 
-        inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+        File file = new File("src/test/resources/finalTaskProperties/" + propFileName);
+        try {
+            inputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         if (inputStream != null) {
             try {

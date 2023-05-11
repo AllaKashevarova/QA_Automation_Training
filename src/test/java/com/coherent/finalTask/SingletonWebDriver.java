@@ -5,7 +5,6 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -15,7 +14,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SingletonWebDriver {
+public final class SingletonWebDriver {
     private static WebDriver driver;
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();
     private static String environmentProperties = "environment.properties";
@@ -40,25 +39,6 @@ public class SingletonWebDriver {
         sauceOptions.put("build", saucelabsBuild);
         sauceOptions.put("name", saucelabsName);
 
-        switch (browserName) {
-            case "CHROME":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setPlatformName(platformName);
-                chromeOptions.setBrowserVersion(browserVersion);
-                chromeOptions.setCapability("sauce:options", sauceOptions);
-                mutableCapabilities = chromeOptions;
-                break;
-            case "FIREFOX":
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setPlatformName(platformName);
-                firefoxOptions.setBrowserVersion(browserVersion);
-                firefoxOptions.setCapability("sauce:options", sauceOptions);
-                mutableCapabilities = firefoxOptions;
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid Browser name. Use one of the following: Chrome, Firefox, Edge");
-        }
-
         try {
             url = new URL(saucelabsUrl);
         } catch (MalformedURLException e) {
@@ -68,6 +48,7 @@ public class SingletonWebDriver {
         if (driver == null) {
             switch (webDriverInstance) {
                 case "LOCAL":
+
                     switch (browserName) {
                         case "CHROME":
                             driver = new ChromeDriver();
@@ -80,14 +61,37 @@ public class SingletonWebDriver {
                         default:
                             throw new IllegalArgumentException("Invalid Local Browser provided. Try CHROME or FIREFOX");
                     }
+                    break;
 
-                    break;
                 case "SAUCELAB":
-                    driver = new RemoteWebDriver(url, mutableCapabilities);
-                    driver.manage().window().setSize(new Dimension(1700, 1000));
+
+                    switch (browserName) {
+                        case "CHROME":
+                            ChromeOptions chromeOptions = new ChromeOptions();
+                            chromeOptions.setPlatformName(platformName);
+                            chromeOptions.setBrowserVersion(browserVersion);
+                            //chromeOptions.addArguments("--remote-allow-origins=*");
+                            chromeOptions.setCapability("sauce:options", sauceOptions);
+                            mutableCapabilities = chromeOptions;
+                            driver = new RemoteWebDriver(url, mutableCapabilities);
+                            driver.manage().window().setSize(new Dimension(1700, 1000));
+                            break;
+                        case "FIREFOX":
+                            FirefoxOptions firefoxOptions = new FirefoxOptions();
+                            firefoxOptions.setPlatformName(platformName);
+                            firefoxOptions.setBrowserVersion(browserVersion);
+                            firefoxOptions.setCapability("sauce:options", sauceOptions);
+                            mutableCapabilities = firefoxOptions;
+                            driver = new RemoteWebDriver(url, mutableCapabilities);
+                            driver.manage().window().setSize(new Dimension(1700, 1000));
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Invalid Browser name. Use one of the following: Chrome, Firefox, Edge");
+                    }
                     break;
+
                 default:
-                    throw new IllegalArgumentException("Invalid WebDriver instance provided. Try LOCAL or SAUCELAB")
+                    throw new IllegalArgumentException("Invalid WebDriver instance provided. Try LOCAL or SAUCELAB");
             }
         }
         return driver;
