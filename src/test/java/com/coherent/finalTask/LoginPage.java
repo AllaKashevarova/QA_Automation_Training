@@ -33,13 +33,15 @@ public class LoginPage {
 //    @FindBy (xpath = "//div[@class='box-content']/p/br")
 //    private WebElement userEmail;
 
-    @FindBy (xpath = "//*[@id=\"maincontent\"]/div[2]/div[1]/div[3]/div[2]/div[1]/div[1]/p")
+    @FindBy (xpath = "//*[@id='maincontent']/div[2]/div[1]/div[3]/div[2]/div[1]/div[1]/p")
     private WebElement userName;
 
 
     public void navigateToLoginPage(){
         driver.get(LOGIN_PAGE);
     }
+
+    //TODO write a BASE class with getActualResult for all pages
 
     public WebElement getActualResult(){
         WebElement actualResult;
@@ -53,7 +55,5 @@ public class LoginPage {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         signInButton.click();
-
-
     }
 }
