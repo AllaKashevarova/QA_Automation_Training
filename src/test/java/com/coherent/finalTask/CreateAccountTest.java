@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(TestResultLoggerExtension.class)
-@ExtendWith({AllureJunit5.class})
 @Feature("Create Account")
 @Tag("AP-1")
 

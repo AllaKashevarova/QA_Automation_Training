@@ -10,11 +10,12 @@ import java.time.Duration;
 import static com.coherent.finalTask.TestConstants.LOGIN_PAGE;
 
 public class LoginPage {
-    private static WebDriver driver;
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();
     private static String userLoginFile = "magentoLogin.properties";
     private static String email = propertiesHelper.propertiesReader("magentoUser.email", userLoginFile);
     private static String password = propertiesHelper.propertiesReader("magentoUser.password", userLoginFile);
+
+    private static WebDriver driver;
 
     public LoginPage() {
         this.driver = SingletonWebDriver.getDriver();
@@ -30,18 +31,14 @@ public class LoginPage {
     @FindBy (id = "send2")
     private WebElement signInButton;
 
-//    @FindBy (xpath = "//div[@class='box-content']/p/br")
-//    private WebElement userEmail;
-
     @FindBy (xpath = "//*[@id='maincontent']/div[2]/div[1]/div[3]/div[2]/div[1]/div[1]/p")
     private WebElement userName;
-
 
     public void navigateToLoginPage(){
         driver.get(LOGIN_PAGE);
     }
 
-    //TODO write a BASE class with getActualResult for all pages
+    //TODO write a BASE class with getActualResult for all pages?
 
     public WebElement getActualResult(){
         WebElement actualResult;

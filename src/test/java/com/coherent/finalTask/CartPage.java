@@ -1,4 +1,4 @@
 package com.coherent.finalTask;
 
-public class CartPage {
+public class CartPage extends PageBaseClass{
 }

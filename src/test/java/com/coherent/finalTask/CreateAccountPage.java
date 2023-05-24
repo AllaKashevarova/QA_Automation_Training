@@ -11,19 +11,13 @@ import java.time.Duration;
 
 import static com.coherent.finalTask.TestConstants.CREATE_ACCOUNT_PAGE;
 
-public class CreateAccountPage {
-    private static WebDriver driver;
+public class CreateAccountPage extends PageBaseClass{
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();
     private static String magentoLoginFile = "magentoLogin.properties";
     private static String userName = propertiesHelper.propertiesReader("magentoUser.firstName", magentoLoginFile);
     private static String userLastName = propertiesHelper.propertiesReader("magentoUser.lastName", magentoLoginFile);
     private static String userPassword = propertiesHelper.propertiesReader("magentoUser.password", magentoLoginFile);
     private static String userEmail = EmailGenerator.generateEmail();
-
-    public CreateAccountPage() {
-        this.driver = SingletonWebDriver.getDriver();
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(id = "firstname")
     private WebElement firstName;

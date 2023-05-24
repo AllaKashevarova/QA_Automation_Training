@@ -14,8 +14,7 @@ import java.util.List;
 
 import static com.coherent.finalTask.TestConstants.ADDRESS_BOOK_PAGE;
 
-public class AddressBookPage {
-    private static WebDriver driver;
+public class AddressBookPage extends PageBaseClass {
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();
     private static String userDataFile = "userData.properties";
     private static String userStreet = propertiesHelper.propertiesReader("user.street", userDataFile);
@@ -24,11 +23,6 @@ public class AddressBookPage {
     private static String userZip = propertiesHelper.propertiesReader("user.zip", userDataFile);
     private static String userCountry = propertiesHelper.propertiesReader("user.country", userDataFile);
     private static String userTelephone = propertiesHelper.propertiesReader("user.telephone", userDataFile);
-
-    public AddressBookPage() {
-        this.driver = SingletonWebDriver.getDriver();
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(xpath = "//button[@title='Add New Address']")
     private WebElement addNewAddressButton;

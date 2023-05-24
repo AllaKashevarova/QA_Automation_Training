@@ -51,6 +51,7 @@ public final class SingletonWebDriver {
 
                     switch (browserName) {
                         case "CHROME":
+                            System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
                             driver = new ChromeDriver();
                             driver.manage().window().setSize(new Dimension(1700, 1000));
                             break;

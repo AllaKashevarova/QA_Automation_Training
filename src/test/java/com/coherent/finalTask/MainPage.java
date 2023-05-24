@@ -8,17 +8,17 @@ import org.openqa.selenium.support.PageFactory;
 import static com.coherent.finalTask.TestConstants.MAIN_PAGE;
 
 public class MainPage {
-    private static WebDriver driver;
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();
     private static String magentoLoginFile = "magentoLogin.properties";
     private static String userEmail = propertiesHelper.propertiesReader("magentoUser.email", magentoLoginFile);
+    private static WebDriver driver;
 
     public MainPage() {
         this.driver = SingletonWebDriver.getDriver();
         PageFactory.initElements(driver, this);
     }
 
-   @FindBy (xpath = "//li[@class='authorization-link']")
+    @FindBy (xpath = "//li[@class='authorization-link']")
    private WebElement signInButton;
 
 
