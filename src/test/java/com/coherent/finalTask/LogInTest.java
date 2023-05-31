@@ -32,7 +32,6 @@ public class LogInTest extends BaseTest{
         loginPage.SignIn();
         accountPage.navigateToMyAccountTab();
         loginPage.getActualResult();
-
         String actualUserName = loginPage.getActualResult().getText();
 
         Assertions.assertEquals(expectedUserData, actualUserName);

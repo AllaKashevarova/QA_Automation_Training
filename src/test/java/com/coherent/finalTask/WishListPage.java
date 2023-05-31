@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-
 import static com.coherent.finalTask.TestConstants.WISHLIST_PAGE;
 
 public class WishListPage extends PageBaseClass {
@@ -29,24 +28,18 @@ public class WishListPage extends PageBaseClass {
 
     public void clearWishlist() {
         Actions action = new Actions(driver);
-
         navigateToWishlistPage();
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(wishListItemLocator));
-
 
 //Is there a way to rewrite this using Factory pattern?
         List<WebElement> wishlistItems = driver.findElements(By.cssSelector("[id^='item_']"));
 
         while (!wishlistItems.isEmpty()) {
             WebElement wishlistItem = wishlistItems.get(0);
-
             action.moveToElement(wishlistItem).perform();
             deleteIcon.click();
-
             wait.until(ExpectedConditions.stalenessOf(wishlistItem));
-
             wishlistItems = driver.findElements(By.cssSelector("[id^='item_']"));
         }
 

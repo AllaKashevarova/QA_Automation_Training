@@ -42,7 +42,6 @@ public class ProductDetailPage extends PageBaseClass{
         itemSize.click();
         itemColor.click();
         addToCartButton.click();
-
     }
 
     public int getItemPrice(){
@@ -50,7 +49,6 @@ public class ProductDetailPage extends PageBaseClass{
         String cutPrice = getPrice.substring(1, getPrice.length()-3);
         int price = Integer.parseInt(cutPrice);
         return price;
-
     }
 
 }

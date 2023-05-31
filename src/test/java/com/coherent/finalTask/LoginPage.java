@@ -38,8 +38,6 @@ public class LoginPage {
         driver.get(LOGIN_PAGE);
     }
 
-    //TODO write a BASE class with getActualResult for all pages?
-
     public WebElement getActualResult(){
         WebElement actualResult;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));

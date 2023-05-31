@@ -59,7 +59,6 @@ public class CreateAccountPage extends PageBaseClass{
         password.sendKeys(userPassword);
         passwordConfirmation.sendKeys(userPassword);
         submitButton.click();
-
         getActualResult();
     }
 }

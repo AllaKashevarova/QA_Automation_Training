@@ -13,12 +13,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 @Feature("Create Account")
 @Tag("AP-1")
-
 public class CreateAccountTest extends BaseTest {
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
     private CreateAccountPage createAccountPage = new CreateAccountPage();
     private String myAccount = "My Account";
-
 
     @Description("Test Description: Verify the ability to create an account")
     @Test

@@ -12,6 +12,5 @@ public class EmailGenerator {
         int randomNumber = random.nextInt(1000);
         String email = "user" + timestamp + randomNumber + "@test.com";
         return email;
-
     }
 }

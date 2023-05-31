@@ -21,7 +21,6 @@ public class MainPage {
     @FindBy (xpath = "//li[@class='authorization-link']")
    private WebElement signInButton;
 
-
     public void navigateToMainPage(){
         driver.get(MAIN_PAGE);
     }
