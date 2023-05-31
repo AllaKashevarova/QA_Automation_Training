@@ -8,5 +8,6 @@ public class TestConstants {
     public static final String ADDRESS_BOOK_PAGE = "https://magento.softwaretestingboard.com/customer/address/index/";
     public static final String PANTS_PAGE = "https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html";
     public static final String WISHLIST_PAGE = "https://magento.softwaretestingboard.com/wishlist/";
+    public static final String CART_PAGE = "https://magento.softwaretestingboard.com/checkout/cart/";
 
 }

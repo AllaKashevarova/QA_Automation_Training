@@ -14,12 +14,14 @@ import static com.coherent.finalTask.TestConstants.WISHLIST_PAGE;
 
 public class WishListPage extends PageBaseClass {
 
-    @FindBy(xpath = "//div[@class='products-grid wishlist']/ol[@class='product-items']")
-    WebElement productItems;
+    @FindBy(css = "[id^='item_']")
+    WebElement wishListItemLocator;
 
     @FindBy(xpath = "//a[@href='#'][@data-role='remove']")
     WebElement deleteIcon;
 
+    @FindBy(xpath = "//div[@class='products-grid wishlist']/ol[@class='product-items']/li[1]//strong/a")
+    WebElement itemText;
 
     public void navigateToWishlistPage() {
         driver.get(WISHLIST_PAGE);
@@ -27,35 +29,40 @@ public class WishListPage extends PageBaseClass {
 
     public void clearWishlist() {
         Actions action = new Actions(driver);
+
         navigateToWishlistPage();
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(wishListItemLocator));
 
-        wait.until(ExpectedConditions.visibilityOf(productItems));
 
-        List<WebElement> items = productItems.findElements(By.tagName("li"));
+//Is there a way to rewrite this using Factory pattern?
+        List<WebElement> wishlistItems = driver.findElements(By.cssSelector("[id^='item_']"));
 
-        if (!items.isEmpty()) {
-            int index = 0;
-            while (index > items.size()) {
-                WebElement item = items.get(index);
-                action.moveToElement(item).perform();
+        while (!wishlistItems.isEmpty()) {
+            WebElement wishlistItem = wishlistItems.get(0);
 
-                wait.until(ExpectedConditions.visibilityOf(deleteIcon));
-                deleteIcon.click();
-                items = productItems.findElements(By.tagName("li"));
+            action.moveToElement(wishlistItem).perform();
+            deleteIcon.click();
 
-                wait.until(ExpectedConditions.invisibilityOf(item));
+            wait.until(ExpectedConditions.stalenessOf(wishlistItem));
 
-                if (items.size() < index + 1) {
-                    index++;
-                }
-            }
+            wishlistItems = driver.findElements(By.cssSelector("[id^='item_']"));
+        }
+
+        List<WebElement> remainingItems = driver.findElements(By.cssSelector("[id^='item_']"));
+        if (remainingItems.isEmpty()) {
+            System.out.println("All items have been deleted from the wishlist.");
         } else {
-            System.out.println("No more items in the Wishlist. Test can be started now.");
+            System.out.println("Some items could not be deleted from the wishlist.");
         }
-            }
-        }
-//        else System.out.println("No more items in the Wishlist. Test can be started now.");
+    }
+
+    public String getItemName() {
+        return itemText.getText();
+    }
+}
+
 
 
 

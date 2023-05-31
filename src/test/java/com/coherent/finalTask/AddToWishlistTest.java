@@ -4,14 +4,17 @@ import com.coherent.task60.TestResultLoggerExtension;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.junit5.AllureJunit5;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 @Feature("Add Item to Wishlist")
 @Tag("AP-4")
-
 public class AddToWishlistTest extends BaseTest {
     private static MainPage mainPage = new MainPage();
     private static LoginPage loginPage = new LoginPage();
@@ -22,16 +25,19 @@ public class AddToWishlistTest extends BaseTest {
     @Description("Test Description: Verify the ability to add to Wishlist")
     @DisplayName("Add to Wishlist")
     @Test
-
     public void addItemToWishlistTest(){
         mainPage.signIn();
         loginPage.SignIn();
 
+        wishListPage.navigateToWishlistPage();
         wishListPage.clearWishlist();
 
-//        productsPage.selectItem();
-//        productDetailPage.addItemToWishList();
+        productsPage.selectItem();
+        String expectedProductName = productDetailPage.getItemName();
+        productDetailPage.addItemToWishList();
+        wishListPage.navigateToWishlistPage();
+
+        Assertions.assertEquals(expectedProductName, wishListPage.getItemName());
 
     }
-
 }

@@ -26,8 +26,6 @@ public class MainPage {
         driver.get(MAIN_PAGE);
     }
 
-    //TODO add method to press Sign In button
-
     public void signIn(){
         navigateToMainPage();
         signInButton.click();

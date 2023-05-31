@@ -105,8 +105,4 @@ public class AddressBookPage extends PageBaseClass {
         return actualResult;
 
     }
-
-    public void cleanUpAddress() {
-        //TODO add test method to clean up the test address
-    }
 }
