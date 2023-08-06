@@ -1,5 +1,6 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.tests;
 
+import com.coherent.finalTask.helpers.PropertiesHelper;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;

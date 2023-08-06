@@ -1,15 +1,14 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.tests;
 
+import com.coherent.finalTask.pages.*;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Feature("Add Items to Cart")

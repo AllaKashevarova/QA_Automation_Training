@@ -1,5 +1,10 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.tests;
 
+import com.coherent.finalTask.helpers.PropertiesHelper;
+import com.coherent.finalTask.pages.AccountPage;
+import com.coherent.finalTask.pages.AddressBookPage;
+import com.coherent.finalTask.pages.LoginPage;
+import com.coherent.finalTask.pages.MainPage;
 import com.coherent.task60.TestResultLoggerExtension;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;

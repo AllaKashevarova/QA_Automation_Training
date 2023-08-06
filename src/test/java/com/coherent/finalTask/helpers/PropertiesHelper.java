@@ -1,4 +1,4 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.helpers;
 
 import java.io.*;
 import java.util.Properties;

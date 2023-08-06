@@ -1,14 +1,9 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.pages;
 
+import com.coherent.finalTask.tests.SingletonWebDriver;
+import com.coherent.finalTask.constants.TestConstants;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static com.coherent.finalTask.TestConstants.*;
 
 public class PageBaseClass {
     protected static WebDriver driver;

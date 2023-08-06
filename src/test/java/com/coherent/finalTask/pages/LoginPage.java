@@ -1,4 +1,6 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.pages;
+import com.coherent.finalTask.helpers.PropertiesHelper;
+import com.coherent.finalTask.tests.SingletonWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-import static com.coherent.finalTask.TestConstants.LOGIN_PAGE;
+import static com.coherent.finalTask.constants.TestConstants.LOGIN_PAGE;
 
 public class LoginPage {
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();

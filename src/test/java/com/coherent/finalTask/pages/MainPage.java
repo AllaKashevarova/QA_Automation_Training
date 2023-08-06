@@ -1,11 +1,13 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.pages;
 
+import com.coherent.finalTask.helpers.PropertiesHelper;
+import com.coherent.finalTask.tests.SingletonWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.coherent.finalTask.TestConstants.MAIN_PAGE;
+import static com.coherent.finalTask.constants.TestConstants.MAIN_PAGE;
 
 public class MainPage {
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();

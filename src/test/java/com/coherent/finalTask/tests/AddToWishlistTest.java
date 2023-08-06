@@ -1,18 +1,13 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.tests;
 
-import com.coherent.task60.TestResultLoggerExtension;
+import com.coherent.finalTask.pages.*;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
-import io.qameta.allure.junit5.AllureJunit5;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 @Feature("Add Item to Wishlist")
 @Tag("AP-4")
 public class AddToWishlistTest extends BaseTest {

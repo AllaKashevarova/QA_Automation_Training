@@ -1,4 +1,4 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.constants;
 
 public class TestConstants {
     public static final String MAIN_PAGE = "https://magento.softwaretestingboard.com/";

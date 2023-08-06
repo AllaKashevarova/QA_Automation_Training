@@ -1,17 +1,17 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.pages;
 
-import org.openqa.selenium.WebDriver;
+import com.coherent.finalTask.helpers.EmailGenerator;
+import com.coherent.finalTask.helpers.PropertiesHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.coherent.finalTask.TestConstants.CREATE_ACCOUNT_PAGE;
+import static com.coherent.finalTask.constants.TestConstants.CREATE_ACCOUNT_PAGE;
 
-public class CreateAccountPage extends PageBaseClass{
+public class CreateAccountPage extends PageBaseClass {
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();
     private static String magentoLoginFile = "magentoLogin.properties";
     private static String userName = propertiesHelper.propertiesReader("magentoUser.firstName", magentoLoginFile);

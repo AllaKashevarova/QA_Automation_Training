@@ -1,4 +1,4 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.helpers;
 
 import com.coherent.task60.PropertiesHelper;
 import com.coherent.task60.ScreenshotHelper;

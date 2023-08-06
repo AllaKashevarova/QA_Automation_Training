@@ -1,18 +1,15 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.coherent.finalTask.helpers.PropertiesHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
-import static com.coherent.finalTask.TestConstants.ADDRESS_BOOK_PAGE;
+import static com.coherent.finalTask.constants.TestConstants.ADDRESS_BOOK_PAGE;
 
 public class AddressBookPage extends PageBaseClass {
     private static PropertiesHelper propertiesHelper = new PropertiesHelper();

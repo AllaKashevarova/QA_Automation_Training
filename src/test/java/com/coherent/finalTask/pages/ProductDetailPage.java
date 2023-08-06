@@ -1,4 +1,4 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ProductDetailPage extends PageBaseClass{
+public class ProductDetailPage extends PageBaseClass {
 
     @FindBy(xpath = "//a[@href='#'][@class='action towishlist']")
     WebElement addToWishListButton;

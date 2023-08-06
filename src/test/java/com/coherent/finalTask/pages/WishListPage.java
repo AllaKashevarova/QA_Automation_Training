@@ -1,4 +1,4 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import static com.coherent.finalTask.TestConstants.WISHLIST_PAGE;
+import static com.coherent.finalTask.constants.TestConstants.WISHLIST_PAGE;
 
 public class WishListPage extends PageBaseClass {
 

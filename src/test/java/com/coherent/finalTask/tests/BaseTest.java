@@ -1,13 +1,11 @@
-package com.coherent.finalTask;
+package com.coherent.finalTask.tests;
 
 import com.coherent.task60.SingletoneWebDriver;
 import com.coherent.task60.TestResultLoggerExtension;
 import io.qameta.allure.Allure;
-import io.qameta.allure.Feature;
 import io.qameta.allure.junit5.AllureJunit5;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
