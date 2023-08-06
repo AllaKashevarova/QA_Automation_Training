@@ -1,4 +1,4 @@
-package com.coherent.task60;
+package com.coherent.finalTask.helpers;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -24,10 +24,9 @@ public class ScreenshotHelper {
         }
     }
 
-        public byte[] attachScreenshot(WebDriver driver) {
-            TakesScreenshot scrShot = ((TakesScreenshot) driver);
-            byte[] screenshot = scrShot.getScreenshotAs(OutputType.BYTES);
-            return screenshot;
-        }
+    public byte[] attachScreenshot(WebDriver driver) {
+        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+        byte[] screenshot = scrShot.getScreenshotAs(OutputType.BYTES);
+        return screenshot;
     }
-
+}
